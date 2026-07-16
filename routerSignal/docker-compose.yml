@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  router-app:
+    build: .
+    image: router-automation
+    container_name: router-app
+    restart: unless-stopped
+    ports:
+      - "8745:8745"
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
