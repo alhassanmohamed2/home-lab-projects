@@ -1,0 +1,22 @@
+.card-body {
+  scrollbar-width: thin;
+  scrollbar-color: #aab7cf #f1f1f1;
+}
+
+.card-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background-color: #aab7cf;
+  border-radius: 6px;
+  border: 3px solid #f1f1f1;
+}
+
+.text-muted {
+    color: #dce1e7 !important;
+}

@@ -1,0 +1,613 @@
+SQLite format 3
+!tabletempo
+!tabletag_entitytag_entity
+CREATE TABLE "tag_entity" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(24) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')))
++indexIDX_07fde106c0b471d8cc80a64fc8credentials_entity
+CREATE INDEX "IDX_07fde106c0b471d8cc80a64fc8" ON "credentials_entity" ("type") 
+%indexIDX_77505b341625b0b4768082e217workflows_tags
+CREATE INDEX "IDX_77505b341625b0b4768082e217" ON "workflows_tags" ("tagId") 
+/indexIDX_54b2f0343d6a2078fa13744386workflows_tags
+CREATE INDEX "IDX_54b2f0343d6a2078fa13744386" ON "workflows_tags" ("workflowId") 
+9tableworkflows_tagsworkflows_tags
+CREATE TABLE "workflows_tags" ("workflowId" integer NOT NULL, "tagId" integer NOT NULL, CONSTRAINT "FK_54b2f0343d6a2078fa137443869" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, CONSTRAINT "FK_77505b341625b0b4768082e2171" FOREIGN KEY ("tagId") REFERENCES "tag_entity" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, PRIMARY KEY ("workflowId", "tagId"));
+indexsqlite_autoindex_workflows_tags_1workflows_tags
+Ytabletag_entitytag_entity
+CREATE TABLE "tag_entity
+)indexIDX_8f949d7a3a984759044054e89btag_entity
+CREATE UNIQUE INDEX "IDX_8f949d7a3a984759044054e89b" ON "tag_entity" ("name") 
+tableexecution_entityexecution_entity
+CREATE TABLE IF NOT EXISTS "execution_entity" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "data" text NOT NULL, "finished" boolean NOT NULL, "mode" varchar NOT NULL, "retryOf" varchar, "retrySuccessId" varchar, "startedAt" datetime NOT NULL, "stoppedAt" datetime, "workflowData" text NOT NULL, "workflowId" varchar)
+1indexIDX_cefb067df2402f6aed0638a6c1execution_entity
+CREATE INDEX "IDX_cefb067df2402f6aed0638a6c1" ON "execution_entity" ("stoppedAt") 
+Stablewebhook_entitywebhook_entity
+CREATE TABLE "webhook_entity" ("workflowId" integer NOT NULL, "webhookPath" varchar NOT NULL, "method" varchar NOT NULL, "node" varchar NOT NULL, "webhookId" varchar, "pathLength" integer, PRIMARY KEY ("webhookPath", "method"))
+Ktableworkflow_entityworkflow_entity
+CREATE TABLE "workflow_entity" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(128) NOT NULL, "active" boolean NOT NULL, "nodes" text NOT NULL, "connections" text NOT NULL, "createdAt" datetime NOT NULL, "updatedAt" datetime NOT NULL, "settings" text, "staticData" text)
+3indexIDX_c4d999a5e90784e8caccf5589dexecution_entity
+CREATE INDEX "IDX_c4d999a5e90784e8caccf5589d" ON "execution_entity" ("workflowId") 
+)indexIDX_8f949d7a3a984759044054e89btag_entity
+CREATE UNIQUE INDEX "IDX_8f949d7a3a984759044054e89b" ON "tag_entity" ("name") 
+]indexIDX_742496f199721a057051acf4c2webhook_entity	CREATE INDEX "IDX_742496f199721a057051acf4c2" ON "webhook_entity" ("webhookId", "method", "pathLength") ;
+indexsqlite_autoindex_webhook_entity_1webhook_entity
++indexIDX_07fde
+Stabletempo
+Stablecredentials_entitycredentials_entity
+CREATE TABLE "credentials_entity" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(128) NOT NULL, "data" text NOT NULL, "type" varchar(32) NOT NULL, "nodesAccess" text NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')))P
+Ytablesqlite_sequencesqlite_sequence
+CREATE TABLE sqlite_sequence(name,seq)
+tablemigrationsmigrations
+CREATE TABLE "migrations" ("id" integer PRIMARY KEY AUTOINCREMENT
+	j	7		
+ClearEvaluation1745322634000/Q
+AddScopesColumnToApiKeys17429184000000P
+RenameAnalyticsToInsights17411675842771O
+UpdateParentFolderIdColumn1740445074052,N
+CreateAnalyticsTables1739549398681(M
+CreateFolderTable17387096099400L
+AddErrorColumnsToTestRuns17377154214623K
+CreateTestCaseExecutionTable1736947513045/J
+AddStatsColumnsToTestRun17361720587799I
+|AddManagedColumnToCredentialsTable1734479635324;H
+AddMockedNodesColumnToTestDefinition1733133775640$G
+CreateTestRun1732549866705,F
+JCreateTestMetricTable17322713252587E
+MigrateTestDefinitionKeyToString17315827486635D
+AddDescriptionToTestDefinition17314040281060C
+CreateTestDefinitionTable1730386903556&B
+}AddProjectIcons1729607673469;A
+xUpdateProcessedDataValueColumnToText1729607673464A@
+AddMissingPrimaryKeyOnAnnotationTagMapping17286598396449?
+SeparateExecutionCreationFromStart1727427440136/>
+CreateProcessedDataTable1726606152711&=
+AddApiKeysTable1724951148974-<
+CreateAnnotationTables1724753530828/;
+RefactorExecutionIndices17237962431462:
+P6 nCreateInvalidAuthTokenTable172362761022279
+AddConstraintToExecutionMetadata172010165314808
+AddActivatedAtUserSetting171749846593157
+IMakeExecutionStatusNonNullable1714133768521$6
+GCreateProject1714133768519(5
+{RemoveNodesAccess1712044305787,4
+yKMoveSshKeysToDatabase171139088212323
+>RemoveFailedExecutionStatus1711018413374&2
+~Q*DropRoleMapping1705429061930)1
+WiAddGlobalAdminRole1700571993961?0
+M20ModifyWorkflowHistoryNodesAndConnections1695829275184*/
+jAddWorkflowMetadata1695128658538/.
+DisallowOrphanExecutions1693554410387*-
+ExecutionSoftDelete16934916139821,
+CreateWorkflowHistoryTable1692967111175.+
+CreateWorkflowNameIndex1691088862123$*
+AddMfaColumns16900000000301)
+RemoveResetPasswordColumns1690000000030=(
+FixMissingIndicesFromStringIdMigration1690000000020,'
+SeparateExecutionData16900000000101&
+MigrateIntegerKeysToString1690000000002+%
+RemoveSkipOwnerSetup1681134145997/$
+AddUserActivatedProperty16811341459963#
+CreateExecutionMetadataTable1679416281777&"
+CreateVariables16775016367523!
+8UpdateRunningExecutionStatus1677237073720- 
+XMigrateExecutionStatus16769961030006
+aPurgeInvalidWorkflowConnections1675940580449)
+CreateLdapEntities1674509946020,
+o=pAddStatusToExecutions16741385660004
+DeleteExecutionsWithWorkflows16732686824753
+CRemoveWorkflowDataLoadedFlag16717261484192
+MessageEventBusDestinations1671535397530,
+AddTriggerCountColumn16698239069931
+AddWorkflowVersionIdColumn16697397071241
+RemoveCredentialUsageTable16657546370241
+CreateCredentialUsageTable1665484192211)
+WorkflowStatistics16641961740000
+CreateWorkflowsEditorRole16637557708920
+CreateCredentialsUserRole1660062385367(
+UAddJsonKeyPinData1659888469333!
+UAddNodeIds1658930531669'
+IntroducePinData1654089251344&
+AddAPIKeyColumn1652905585850&
+AddUserSettings1652367743993%
+QCommunityNodes1652254514001)
+_LowerCaseUserEmail1648740597343+
+CreateUserManagement16469927723310
+6AddExecutionEntityIndexes16444219395100	
+XUpdateWorkflowCredentials1630330987096$
+[AddWaitColumn1621707690587*
+UniqueWorkflowNames1620821879465&
+mKRCreateTagEntity1617213344594#
+AddWebhookId1611071044839,
+MakeStoppedAtNullable1607431743769+
+CreateIndexStoppedAt1594825041918#
+WebhookModel1592445003908'
+InitialMigration15881024
+temporary_test_definition
+role
+tempo
+execution_entity
+execution_metadata
+test_definitiony
+migrationsp
+Itableuseruser
+CREATE TABLE "user" ("id" varchar PRIMARY KEY NOT NULL, "email" varchar(255), "firstName" varchar(32), "lastName" varchar(32), "password" varchar, "resetPasswordToken" varchar, "resetPasswordTokenExpiration" integer
+Ctableworkflows_tagsworkflows_tags
+CREATE TABLE "workflows_tags" ("workflowId" varchar(36) NOT NULL, "tagId" integer NOT NULL, CONSTRAINT "FK_workflows_tags_workflow_entity" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, CONSTRAINT "FK_workflows_tags_tag_entity" FOREIGN KEY ("tagId") REFERENCES "tag_entity" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, PRIMARY KEY ("workflowId", "tagId"))=1
+indexsqlite_autoindex_installed_nodes_1installed_nodes*
+/tableinstalled_nodesinstalled_nodes)CREATE TABLE "installed_nodes" ("name"	char(200) NOT NULL,"type"	char(200) NOT NULL,"latestVersion"	INTEGER DEFAULT 1,"package"	char(214) NOT NULL,PRIMARY KEY("name"),FOREIGN KEY("package") REFERENCES "installed_packages"("packageName") ON DELETE CASCADE ON UPDATE CASCADE)C/
+indexsqlite_autoindex_installed_packages_1installed_packages'
+Stableinstalled_packagesinstalled_packages
+CREATE TABLE "installed_packages" ("packageName"	char(214) NOT NULL,"installedVersion"	char(50) NOT NULL,"authorName"	char(70) NULL,"authorEmail"	char(70) NULL,"createdAt"	datetime(3) NOT NULL DEFAULT 'STRFTIME(''%Y-%m-%d %H:%M:%f'', ''NOW'')',"updatedAt"	datetime(3) NOT NULL DEFAULT 'STRFTIME(''%Y-%m-%d %H:%M:%f'', ''NOW'')',PRIMARY KEY("packageName"))/-
+indexsqlite_autoindex_settings_1settings&
+-tablesettingssettings%CREATE TABLE "settings" ("key"	TEXT NOT NULL,"value"	TEXT NOT NULL DEFAULT '',"loadOnStartup"	boolean NOT NULL default false,PRIMARY KEY("key"))
+GindexIDX_829d16efa0e265cb076d50eca8d21733shared_credentials$CREATE INDEX "IDX_829d16efa0e265cb076d50eca8d21733" ON "shared_credentials" ("credentialsId")
+indexsqlite_autoindex_shared_credentials_1shared_credentials#
+Wtableshared_credentialsshared_credentials"CREATE TABLE "shared_credentials" ("createdAt" datetime(3) NOT NU3M
+indexsqlite_autoindex_tag_entity_1tag_entity7
+tabletag_entitytag_entity
+CREATE TABLE "tag_entity" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(24) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')))
+?tableauth_provider_sync_historyauth_provider_sync_history
+CREATE TABLE "auth_provider_sync_history" (
+				"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+				"providerType" VARCHAR(32) NOT NULL,
+				"runMode" TEXT NOT NULL,
+				"status" TEXT NOT NULL,
+				"startedAt" DATETIME NOT NULL,
+				"endedAt" DATETIME NOT NULL,
+				"scanned" INTEGER NOT NULL,
+				"created" INTEGER NOT NULL,
+				"updated" INTEGER NOT NULL,
+				"disabled" INTEGER NOT NULL,
+				"error" TEXT
+				
+			)9A
+indexsqlite_autoindex_auth_identity_1auth_identity
+)tableauth_identityauth_identity
+CREATE TABLE "auth_identity" (
+				"userId" VARCHAR(36) REFERENCES "user" (id),
+				"providerId" VARCHAR(64) NOT NULL,
+				"providerType" VARCHAR(32) NOT NULL,
+				"createdAt" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				"updatedAt" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				PRIMARY KEY("providerId", "providerType")
+			)C<
+indexsqlite_autoindex_event_destinations_1event_destinations/
+'tableevent_destinationsevent_destinations.CREATE TABLE "event_destinations" ("id"	varchar(36) PRIMARY KEY NOT NULL,"destination" text NOT NULL,"createdAt"	datetime(3) NOT NULL DEFAULT 'STRFTIME(''%Y-%m-%d %H:%M:%f'', ''NOW'')',"updatedAt"	datetime(3) NOT NULL DEFAULT 'STRFTIME(''%Y-%m-%d %H:%M:%f'', ''NOW'')')P
+Ytablesqlite_sequencesqlite_sequence
+CREATE TABLE sqlite_sequence(name,seq)
+tablemigrationsmigrations
+CREATE TABLE "migrations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "timestamp" bigint NOT NULL, "name" varchar NOT NULL)
+-tablesettin
+gindexidx_webhook_entity_webhook_path_methodwebhook_entity	CREATE INDEX "idx_webhook_entity_webhook_path_method" ON "webhook_entity" ("webhookId","method","pathLength")
+Itableworkflow_statisticsworkflow_statistics
+CREATE TABLE "workflow_statistics" (
+				"count" INTEGER DEFAULT 0,
+				"latestEvent" DATETIME,
+				"name" VARCHAR(128) NOT NULL,
+				"workflowId" VARCHAR(36),
+				PRIMARY KEY("workflowId", "name"),
+				FOREIGN KEY("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE
+			)
+-indexidx_workflows_tags_workflow_idworkflows_tags
+CREATE INDEX "idx_workflows_tags_workflow_id" ON "workflows_tags" ("workflowId")zP
+indexidx_workflows_tags_tag_idworkflows_tags
+CREATE INDEX "idx_workflows_tags_tag_id" ON "workflows_tags" ("tagId");O
+indexsqlite_autoindex_workflows_tags_1workflows_tags
+Ctableworkflows_tagswo;i
+indexsqlite_autoindex_execution_data_1execution_data:
+Qtableexecution_dataexecution_data
+CREATE TABLE "execution_data" (
+				"executionId" int PRIMARY KEY NOT NULL,
+				"workflowData" text NOT NULL,
+				"data" text NOT NULL,
+				FOREIGN KEY("executionId") REFERENCES "execution_entity" ("id") ON DELETE CASCADE
+			)
+	indexidx_variables_keyvariables
+CREATE UNIQUE INDEX "idx_variables_key" ON "variables" ("key")1f
+indexsqlite_autoindex_variables_2variables9
+indexsqlite_autoindex_variables_1variables8
+mtablevariablesvariables$CREATE TABLE "variables" (
+				id varchar(36) PRIMARY KEY NOT NULL,
+				"key" TEXT NOT NULL,
+				"type" TEXT NOT NULL DEFAULT ('string'),
+				value TEXT,
+				UNIQUE("key")
+			)
+gindexidx_webhook_entity_webhook_path_methodwebhook_entity	CREATE INDEX "idx_webhook_entity_webhook_path_method" ON "webhook_entity" ("webhookId","method","pathLength");X
+indexsqlite_autoindex_webhook_entity_1webhook_entity!
+[tablewebhook_entitywebhook_entity CREATE TABLE "webhook_entity" ("workflowId" varchar(36) NOT NULL, "webhookPath" varchar NOT NULL, "method" varchar NOT NULL, "node" varchar NOT NULL, "webhookId" varchar, "pathLength" integer, PRIMARY KEY ("webhookPath", "method"))ES
+indexsqlite_autoindex_workflow_statistics_1workflow_statistics
+SindexIDX_
+)indexIDX_8f949d7a3a984759044054e89btag_entity;CREATE UNIQUE INDEX "IDX_8f949d7a3a984759044054e89b" ON "tag_entity" ("name") 
+tableworkflow_statisticsworkflow_statistics
+CREATE TABLE "workflow_statistics" (
+				"count" INTEGER DEFAULT 0,
+				"latestEvent" DATETIME,
+				"name" VARCHAR(128) NOT NULL,
+				"workflowId" VARCHAR(36), "rootCount" INTEGER DEFAULT 0,
+				PRIMARY KEY("workflowId", "name"),
+				FOREIGN KEY("workflowId") REFERENCES "workflow_entity"("id") ON DELETE CASCADE
+			)
+?tableauth_provider_sync_historyauth_provider_sync_history
+CREATE TABLE "auth_
+#tablecredentials_entitycredentials_entity
+CREATE TABLE "credentials_entity" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(128) NOT NULL, "data" text NOT NULL, "type" varchar(32) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "isManaged" BOOLEAN NOT NULL DEFAULT 0, "isGlobal" BOOLEAN NOT NULL DEFAULT 0)
+3indexIDX_1e31657f5fe46816c34be7c1b4workflow_history
+CREATE INDEX "IDX_1e31657f5fe46816c34be7c1b4" ON "workflow_history" ("workflowId") ?
+indexsqlite_autoindex_workflow_history_1workflow_historyA
+tableworkflow_historyworkflow_history@CREATE TABLE "workflow_history" ("versionId" varchar(36) PRIMARY KEY NOT NULL, "workflowId" varchar(36) NOT NULL, "authors" varchar(255) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "nodes" text NOT NULL, "connections" text NOT NULL, CONSTRAINT "FK_1e31657f5fe46816c34be7c1b4b" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)
+null 8
+null 7
+null 6
+null 5
+null 4
+null 3
+null 2
+sYK8q9OWB0zOjSKKUnnamed Projectpersonal2026-01-06 14:13:53.0542026-01-06 14:13:53.054
+-	sYK8q9OWB0zOjSKK
+	features.ldap{"loginEnabled":false,"loginLabel":"","connectionUrl":"","allowUnauthorizedCerts":false,"connectionSecurity":"none","connectionPort":389,"baseDn":"","bindingAdminDn":"","bindingAdminPassword":"","firstNameAttribute":"","lastNameAttribute":"","emailAttribute":"","loginIdAttribute":"","ldapIdAttribute":"","userFilter":"","synchronizationEnabled":false,"synchronizationInterval":60,"searchPageSize":0,"searchTimeout":60,"enforceEmailUniqueness":true}
+	ui.banners.dismissed["V1"]
+	userManagement.skipInstanceOwnerSetupfalse,
+	userManagement.isInstanceOwnerSetUpfalse
+features.ldap
+ui.banners.dismissed
+*userManagement.skipInstanceOwnerSetup
+S	userManagement.isInstanceOwnerSetUp
+	project:chatUserproject
+	project:viewerproject
+	project:editorproject
+	project:adminproject"
+	project:personalOwnerproject
+	global:memberglobal
+	global:adminglobal
+7	project:personalOwner
+53ddaa8c-fd5c-46f2-ab62-024426e040532026-0'
+U	53ddaa8c-fd5c-46f2-ab62-024426e0
+UindexIDX_cec8eea3bf49551482
+}tableexecution_annotationsexecution_annotations
+CREATE TABLE "execution_annotations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "executionId" integer NOT NULL, "vote" varchar(6), "note" text, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_97f863fa83c4786f19565084960" FOREIGN KEY ("executionId") REFERENCES "execution_entity" ("id") ON DELETE CASCADE)
+ktableinvalid_auth_tokeninvalid_auth_token1CREATE TABLE "invalid_auth_token" ("token" varchar(512) PRIMARY KEY NOT NULL, "expiresAt" datetime(3) NOT NULL)	x
+1indexIDX_61448d56d61802b5dfde5cdb00project_relationJCREATE INDEX "IDX_61448d56d61802b5dfde5cdb00" ON "project_relation" ("projectId") ?
+indexsqlite_autoindex_project_relation_1project_relationH	x
+Otableproject_relationproject_relationGCREATE TABLE "project_relation" ("projectId" varchar(36) NOT NULL, "userId" varchar NOT NULL, "role" varchar NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_61448d56d61802b5dfde5cdb002" FOREIGN KEY ("projectId") REFERENCES "project" ("id") ON DELETE CASCADE, CONSTRAINT "FK_5f0643f6717905a05164090dde7" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE, PRIMARY KEY ("projectId", "userId"))	x
+indexsqlite_autoindex_project_1projectB	x
+Ctableprojectproject4CREATC
+indexsqlite_autoindex_invalid_auth_token_1invalid_auth_token2
+UindexIDX_cec8eea3bf49551482ccb4933eexecution_metadata>CREATE UNIQUE INDEX "IDX_cec8eea3bf49551482ccb4933e" ON "execution_metadata" ("executionId", "key") 
+[tableexecution_metadataexecution_metadata=CREATE TABLE "execution_metadata" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "executionId" integer NOT NULL, "key" varchar(255) NOT NULL, "value" text NOT NULL, CONSTRAINT "FK_31d0b4c93fb85ced26f6005cda3" FOREIGN KEY ("executionId") REFERENCES "execution_entity" ("id") ON DELETE CASCADE)
+%indexidx_credentials_entity_typecredentials_entity3CREATE INDEX "idx_credentials_entity_type" ON "credentials_entity" ("type") C
+indexsqlite_autoindex_credentials_entity_1credentials_entityF
+1indexIDX_execution_entity_deletedAtexecution_entity0CREATE INDEX "IDX_execution_entity_deletedAt" ON "execution_entity" ("deletedAt") =
+indexsqlite_autoindex_shared_workflow_1shared_workflow5
+}tableshared_workflowshared_workflow-CREATE TABLE "shared_workflow" ("workflowId" varchar(36) NOT NULL, "projectId" varchar(36) NOT NULL, "role" text NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_daa206a04983d47d0a9c34649ce" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE CASCADE, CONSTRAINT "FK_a45ea5f27bcfdc21af9b4188560" FOREIGN KEY ("projectId") REFERENCES "project" ("id") ON DELETE CASCADE, PRIMARY KEY ("workflowId", "projectId"))C
+indexsqlite_autoindex_shared_credentials_1shared_credentialsN
+tableshared_credentialsshared_credentialsMCREATE TABLE "shared_credentials" ("credentialsId" varchar(36) NOT NULL, "projectId" varchar(36) NOT NULL, "role" text NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_416f66fc846c7c442970c094ccf" FOREIGN KEY ("credentialsId") REFERENCES "credentials_entity" ("id") ON DELETE CASCADE, CONSTRAINT "FK_812c2852270da1247756e77f5a4" FOREIGN KEY ("projectId") REFERENCES "project" ("id") ON DELETE CASCADE, PRIMARY KEY ("credentialsId", "projectId"))
++indexIDX_5f0643f6717905a05164090ddeproject_relationKCREATE INDEX "IDX_5f0643f6717905a05164090dde" ON "project_relation" ("userId") 
+-U7;;sYK8q9OWB0zOjSKK53ddaa8c-fd5c-46f2-ab62-024426e04053project:personalOwner2026-0'
+U	53ddaa8c-fd5c-46f2-ab62-024426e04053
+-U	sYK8q9OWB0zOjSKK53ddaa8c-fd5c-46
+-	sYK8q9OWB0zOjSKK
+indexsqlite_autoindex_processed_data_1processed_dataC
+5tableuseruserVCREATE TABLE "user" (
+					id varchar PRIMARY KEY,
+					email VARCHAR(255) UNIQUE,
+					"firstName" VARCHAR(32),
+					"lastName" VARCHAR(32),
+					password VARCHAR,
+					"personalizationAnswers" TEXT,
+					"createdAt" DATETIME(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')),
+					"updatedAt" DATETIME(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')),
+					settings TEXT,
+					disabled BOOLEAN DEFAULT FALSE NOT NULL,
+					"mfaEnabled" BOOLEAN DEFAULT FALSE NOT NULL,
+					"mfaSecret" TEXT,
+					"mfaRecoveryCodes" TEXT,
+					role TEXT NOT NULL
+			, "lastActiveAt" DATE NULL)
+5tableprocessed_dataprocessed_data<CREATE TABLE "processed_data" ("workflowId" varchar(36) NOT NULL, "context" varchar(255) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "value" text NOT NULL, CONSTRAINT "FK_06a69a7032c97a763c2c7599464" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, PRIMARY KEY ("workflowId", "context"))
+1indexIDX_execution_entity_deletedAtexecution_entity0CREATE INDEX "IDX_execution_entity_deletedAt" ON "execution_entity" ("deletedAt") 
+1indexIDX_execution_entity_stoppedAtexecution_entity
+CREATE INDEX "IDX_execution_entity_stoppedAt" ON "execution_entity" ("stoppedAt") 
+ktableexecution_entityexecution_entity
+CREATE TABLE "execution_entity" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "workflowId" varchar(36) NOT NULL, "finished" boolean NOT NULL, "mode" varchar NOT NULL, "retryOf" varchar, "retrySuccessId" varchar, "startedAt" datetime, "stoppedAt" datetime, "waitTill" datetime, "status" varchar NOT NULL, "deletedAt" datetime(3), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_c4d999a5e90784e8caccf5589de" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)
+indexsqlite_autoindex_user_2userX
+indexsqlite_autoindex_user_1userW
+IindexIDX_c1519757391996eb06064f0e7cexecution_annotation_tagsQCREATE INDEX "IDX_c1519757391996eb06064f0e7c" ON "execution_annotation_tags" ("annotationId") 
+;indexIDX_a3697779b366e131b2bbdae297execution_annotation_tagsPCREATE INDEX "IDX_a3697779b366e131b2bbdae297" ON "execution_annotation_tags" ("tagId") Q
+indexsqlite_autoindex_execution_annotation_tags_1execution_annotation_tagsO
+5tableexecution_annotation_tagsexecution_annotation_tags
+CREATE TABLE "execution_annotation_tags" ("annotationId" integer NOT NULL, "tagId" varchar(24) NOT NULL, CONSTRAINT "FK_c1519757391996eb06064f0e7c8" FOREIGN KEY ("annotationId") REFERENCES "execution_annotations" ("id") ON DELETE CASCADE, CONSTRAINT "FK_a3697779b366e131b2bbdae2976" FOREIGN KEY ("tagId") REFERENCES "annotation_tag_entity" ("id") ON DELETE CASCADE, PRIMARY KEY ("annotationId", "tagId"))
+?indexIDX_ae51b54c4bb430cf92f48b623fannotation_tag_entity,CREATE UNIQUE INDEX "IDX_ae51b54c4bb430cf92f48b623f" ON "annotation_tag_entity" ("name") I
+indexsqlite_autoindex_annotation_tag_entity_1annotation_tag_entity#
+#tableannotation_tag_entityannotation_tag_entity"CREATE TABLE "annotation_tag_entity" ("id" varchar(16) PRIMARY KEY NOT NULL, "name" varchar(24) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')))
+MindexIDX_97f863fa83c4786f1956508496execution_annotations
+CREATE UNIQUE INDEX "IDX_97f863fa83c4786f1956508496" ON "execution_annotations" ("executionId") 
+-U7;;sYK8q9OWB0zOjSKK53ddaa8c-fd5c-46f2-ab62-024426e04053project:personalOwner2026-01-06 14:13:53.0552026-01-06 14:13:53.055
+-U	sYK8q9OWB0zOjSKK53ddaa8c-fd5c-46f2-ab62-024426e04053
+	j	7		
+ClearEvaluation1745322634000/Q
+AddScopesColumnToApiKeys17429184000000P
+RenameAnalyticsToInsights17411675842771O
+UpdateParentFolderIdColumn1740445074052,N
+CreateAnalyticsTables1739549398681(M
+CreateFolderTable17387096099400L
+AddErrorColumnsToTestRuns17377154214623K
+CreateTestCaseExecutionTable1736947513045/J
+AddStatsColumnsToTestRun17361720587799I
+|AddManagedColumnToCredentialsTable1734479635324;H
+AddMockedNodesColumnToTestDefinition1733133775640$G
+CreateTestRun1732549866705,F
+JCreateTestMetricTable17322713252587E
+MigrateTestDefinitionKeyToString17315827486635D
+AddDescriptionToTestDefinition17314040281060C
+CreateTestDefinitionTable1730386903556&B
+}AddProjectIcons1729607673469;A
+xUpdateProcessedDataValueColumnToText1729607673464A@
+AddMissingPrimaryKeyOnAnnotationTagMapping17286598396449?
+SeparateExecutionCreationFromStart1727427440136/>
+CreateProcessedDataTable1726606152711&=
+AddApiKeysTable1724951148974-<
+CreateAnnotationTables1724753530828/;
+RefactorExecutionIndices17237962431462:
+P6 nCreateInvalidAuthTokenTable172362761022279
+AddConstraintToExecutionMetadata172010165314808
+AddActivatedAtUserSetting171749846593157
+IMakeExecutionStatusNonNullable1714133768521$6
+GCreateProject1714133768519(5
+{RemoveNodesAccess1712044305787,4
+yKMoveSshKeysToDatabase171139088212323
+>RemoveFailedExecutionStatus1711018413374&2
+~Q*DropRoleMapping1705429061930)1
+WiAddGlobalAdminRole1700571993961?0
+M20ModifyWorkflowHistoryNodesAndConnections1695829275184*/
+jAddWorkflowMetadata1695128658538/.
+DisallowOrphanExecutions1693554410387*-
+ExecutionSoftDelete16934916139821,
+CreateWorkflowHistoryTable1692967111175.+
+CreateWorkflowNameIndex1691088862123$*
+AddMfaColumns16900000000301)
+RemoveResetPasswordColumns1690000000030=(
+FixMissingIndicesFromStringIdMigration1690000000020,'
+SeparateExecutionData16900000000101&
+MigrateIntegerKeysToString1690000000002+%
+RemoveSkipOwnerSetup1681134145997/$
+AddUserActivatedProperty16811341459963#
+CreateExecutionMetadataTable1679416281777&"
+CreateVariables16775016367523!
+8UpdateRunningExecutionStatus1677237073720- 
+XMigrateExecutionStatus16769961030006
+aPurgeInvalidWorkflowConnections1675940580449)
+CreateLdapEntities1674509946020,
+o=pAddStatusToExecutions16741385660004
+DeleteExecutionsWithWorkflows16732686824753
+CRemoveWorkflowDataLoadedFlag16717261484192
+MessageEventBusDestinations1671535397530,
+AddTriggerCountColumn16698239069931
+AddWorkflowVersionIdColumn16697397071241
+RemoveCredentialUsageTable16657546370241
+CreateCredentialUsageTable1665484192211)
+WorkflowStatistics16641961740000
+CreateWorkflowsEditorRole16637557708920
+CreateCredentialsUserRole1660062385367(
+UAddJsonKeyPinData1659888469333!
+UAddNodeIds1658930531669'
+IntroducePinData1654089251344&
+AddAPIKeyColumn1652905585850&
+AddUserSettings1652367743993%
+QCommunityNodes1652254514001)
+_LowerCaseUserEmail1648740597343+
+CreateUserManagement16469927723310
+6AddExecutionEntityIndexes16444219395100	
+XUpdateWorkflowCredentials1630330987096$
+[AddWaitColumn1621707690587*
+UniqueWorkflowNames1620821879465&
+mKRCreateTagEntity1617213344594#
+AddWebhookId1611071044839,
+MakeStoppedAtNullable1607431743769+
+CreateIndexStoppedAt1594825041918#
+WebhookModel1592445003908'
+InitialMigration1588102412422
+AddIsGlobalColumnToCredentialsTable1762771954619<o
+&BackfillMissingWorkflowHistoryRecords17627637046143n
+^AAddWorkflowDescriptionColumn17621777362574m
+~AddToolsColumnToChatHubTables17618303409906l
+AddAttachmentsToChatHubMessages17617731550241k
+ChChangeDependencyInfoToJson1761655473000/j
+AddWorkflowVersionColumn1761047826451/i
+aDropUnusedChatHubColumns17609651421134h
+CreateWorkflowDependencyTable1760314000000*g
+CreateOAuthEntities1760116750277&f
+pUniqueRoleNames1760020838000.e
+CreateChatHubAgentTable1760020000000*d
+CreateChatHubTables17600193799822c
+ChangeValueTypesForInsights17593998110002b
+AddProjectIdToVariableTable17587945068931a
+AddAudienceColumnToApiKeys17587317861328`
+AddTimestampsToRoleAndRoleIndexes1756906557570;_
+ReplaceDataStoreTablesWithDataTables1754475614602,^
+CreateDataStoreTables17544756146015]
+LinkRoleToProjectRelationTable1753953244168:\
+AddInputsOutputsToTestCaseExecution1752669793000*[
+RemoveOldRoleColumn1750252139170*Z
+LinkRoleToUserTable1750252139168%Y
+AddRolesTables1750252139167%X
+AddScopeTables17502521391662W
+AddLastActiveAtColumnToUser17502521391662V
+AddProjectDescriptionColumn1747824239000$U
+]DropRoleTable17459346660770T
+\AddWorkflowArchivedColumn17459346660765S
+AddWorkflowStatisticsRootCount1745587087521
+qtableworkflow_entityworkflow_entitymCREATE TABLE "workflow_entity" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(128) NOT NULL, "active" boolean NOT NULL, "nodes" text, "connections" text, "settings" text, "staticData" text, "pinData" text, "versionId" varchar(36), "triggerCount" integer DEFAULT (0), "meta" text, "parentFolderId" varchar(36), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "isArchived" BOOLEAN NOT NULL DEFAULT FALSE, "versionCounter" integer NOT NULL DEFAULT 1, CONSTRAINT "FK_04a4db5906fbc5606c71448d912" FOREIGN KEY ("parentFolderId") REFERENCES "folder" ("id") ON DELETE CASCADE);
+indexsqlite_autoindex_processed_data_1processed_dataC
+CindexIDX_1d8ab99d5861c9388d2dc1cf73insights_metadata?CREATE UNIQUE INDEX "IDX_1d8ab99d5861c9388d2dc1cf73" ON "insights_metadata" ("workflowId") 
+tableinsights_metadatainsights_metadata
+CREATE TABLE "insights_metadata" ("metaId" integer PRIMARY KEY NOT NULL, "workflowId" varchar(16), "projectId" varchar(36), "workflowName" varchar(128) NOT NULL, "projectName" varchar(255) NOT NULL, CONSTRAINT "FK_1d8ab99d5861c9388d2dc1cf733" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE SET NULL, CONSTRAINT "FK_2375a1eda085adb16b24615b69c" FOREIGN KEY ("projectId") REFERENCES "project" ("id") ON DELETE SET NULL)
+%indexIDX_e10425f6ab9964c4c1623a4a03workflow_entityoCREATE INDEX "IDX_e10425f6ab9964c4c1623a4a03" ON "workflow_entity" ("name") =
+indexsqlite_autoindex_workflow_entity_1workflow_entityn3
+indexsqlite_autoindex_folder_tag_1folder_tagg
+Stablefolder_tagfolder_tagfCREATE TABLE "folder_tag" ("folderId" varchar(36) NOT NULL, "tagId" varchar(36) NOT NULL, CONSTRAINT "FK_94a60854e06f2897b2e0d39edba" FOREIGN KEY ("folderId") REFERENCES "folder" ("id") ON DELETE CASCADE, CONSTRAINT "FK_dc88164176283de80af47621746" FOREIGN KEY ("tagId") REFERENCES "tag_entity" ("id") ON DELETE CASCADE, PRIMARY KEY ("folderId", "tagId"))
+7indexIDX_14f68deffaf858465715995508foldereCREATE UNIQUE INDEX "IDX_14f68deffaf858465715995508" ON "folder" ("projectId", "id") +
+indexsqlite_autoindex_folder_1folderd
+ctablefolderfoldercCREATE TABLE "folder" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(128) NOT NULL, "parentFolderId" varchar(36), "projectId" varchar(36) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_a8260b0b36939c6247f385b8221" FOREIGN KEY ("projectId") REFERENCES "project" ("id") ON DELETE CASCADE, CONSTRAINT "FK_804ea52f6729e3940498bd54d78" FOREIGN KEY ("parentFolderId") REFERENCES "folder" ("id") ON DELETE CASCADE)-
+indexsqlite_autoindex_project_1project
+tableprojectproject
+CREATE TABLE "project" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(255) NOT NULL, "type" varchar(36) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "icon" text, "description" VARCHAR(512))
+project:chatUser
+project:viewer
+project:editor
+project:admin
+project:personalOwner
+globa)
+-7	sYK8q9OWB0zOjSKKproject:personalOwner
+%53ddaa8c-fd5c-46f2-ab62-024426e040532026-01-06 14:13:52.5782026-01-06 14:13:52.578{"userActivated":false}global:owner
+Ytablerolerole(CREATE TABLE "role" ("slug" varchar(128) PRIMARY KEY NOT NULL, "displayName" text, "description" text, "roleType" text, "systemRole" boole
+7indexIDX_8e4b4774db42f1e6dda3452b2atest_case_executionDCREATE INDEX "IDX_8e4b4774db42f1e6dda3452b2a" ON "test_case_execution" ("testRunId") 
+Etabletest_case_executiontest_case_executionRCREATE TABLE "test_case_execution" ("id" varchar(36) PRIMARY KEY NOT NULL, "testRunId" varchar(36) NOT NULL, "pastExecutionId" integer, "executionId" integer, "evaluationExecutionId" integer, "status" varchar NOT NULL, "runAt" datetime(3), "completedAt" datetime(3), "errorCode" varchar, "errorDetails" text, "metrics" text, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "inputs" text, "outputs" text, CONSTRAINT "FK_dfbe194e3ebdfe49a87bc4692ca" FOREIGN KEY ("evaluationExecutionId") REFERENCES "execution_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_e48965fac35d0f5b9e7f51d8c44" FOREIGN KEY ("executionId") REFERENCES "execution_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_258d954733841d51edd826a562b" FOREIGN KEY ("pastExecutionId") REFERENCES "execution_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_8e4b4774db42f1e6dda3452b2af" FOREIGN KEY ("testRunId") REFERENCES "test_run" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)'
+indexsqlite_autoindex_user_2usera'
+indexsqlite_autoindex_user_1user`
+1tableuseruser^CREATE TABLE "user" ("id" varchar PRIMARY KEY, "email" varchar(255), "firstName" varchar(32), "lastName" varchar(32), "password" varchar, "personalizationAnswers" text, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "settings" text, "disabled" boolean NOT NULL DEFAULT (FALSE), "mfaEnabled" boolean NOT NULL DEFAULT (FALSE), "mfaSecret" text, "mfaRecoveryCodes" text, "lastActiveAt" date, "roleSlug" varchar(128) NOT NULL DEFAULT ('global:member'), CONSTRAINT "UQ_e12875dfb3b1d92d7d7c5377e22" UNIQUE ("email"), CONSTRAINT "FK_eaea92ee7bfb9c1b6cd01505d56" FOREIGN KEY ("roleSlug") REFERENCES "role" ("slug"))u
+indexIDX_role_scope_scopeSlugrole_scope]CREATE INDEX "IDX_role_scope_scopeSlug" ON "role_scope" ("scopeSlug") 3
+indexsqlite_autoindex_role_scope_1role_scope\
+Otablerole_scoperole_scope[CREATE TABLE role_scope (
+						"roleSlug" VARCHAR(128) NOT NULL,
+						"scopeSlug" VARCHAR(128) NOT NULL,
+						CONSTRAINT "PK_role_scope" PRIMARY KEY ("roleSlug", "scopeSlug"),
+						CONSTRAINT "FK_role" FOREIGN KEY ("roleSlug") REFERENCES role ("slug") ON DELETE CASCADE ON UPDATE CASCADE,
+						CONSTRAINT "FK_scope" FOREIGN KEY ("scopeSlug") REFERENCES "scope" ("slug") ON DELETE CASCADE ON UPDATE CASCADE
+					))
+indexsqlite_autoindex_scope_1scope
+[tablescopescope
+CREATE TABLE "scope" ("slug" varchar(128) PRIMARY KEY NOT NULL, "displayName" text, "description" text)~
+#indexIDX_d6870d3b6e4c185d33926f423ctest_runBCREATE INDEX "IDX_d6870d3b6e4c185d33926f423c" ON "test_run" ("workflowId") /
+indexsqlite_autoindex_test_run_1test_run4
+tabletest_runtest_run+CREATE TABLE "test_run" ("id" varchar(36) PRIMARY KEY NOT NULL, "workflowId" varchar(36) NOT NULL, "status" varchar NOT NULL, "errorCode" varchar, "errorDetails" text, "runAt" datetime(3), "completedAt" datetime(3), "metrics" text, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_d6870d3b6e4c185d33926f423c8" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE CASCADE)
+indexIDX_60b6a84299eeb3f671dfec7693insights_by_periodkCREATE UNIQUE INDEX "IDX_60b6a84299eeb3f671dfec7693" E
+indexsqlite_autoindex_test_case_execution_1test_case_executionV
+U	53ddaa8c-fd5c-46f2-ab62-024426e04053
+indexsqlite_autoindex_temporar
+tableuser_api_keysuser_api_keyswCREATE TABLE "user_api_keys" ("id" varchar(36) PRIMARY KEY NOT NULL, "userId" varchar NOT NULL, "label" varchar(100) NOT NULL, "apiKey" varchar NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "scopes" text, "audience" varchar NOT NULL DEFAULT ('public-api'), CONSTRAINT "UQ_63d7bbae72c767cf162d459fccd" UNIQUE ("userId", "label"), CONSTRAINT "UQ_1ef35bac35d20bdae979d917a36" UNIQUE ("apiKey"), CONSTRAINT "FK_e131705cbbc8fb589889b02d457" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)
+Gindexproject_relation_role_project_idxproject_relationZCREATE INDEX "project_relation_role_project_idx" ON "project_relation" ("projectId", "role") 
+tablerolerolesCREATE TABLE "role" ("slug" varchar(128) PRIMARY KEY NOT NULL, "displayName" text, "description" text, "roleType" text, "systemRole" boolean NOT NULL DEFAULT (false), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')))
+_tabledata_table_columndata_table_columnXCREATE TABLE "data_table_column" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(128) NOT NULL, "type" varchar(32) NOT NULL, "index" integer NOT NULL, "dataTableId" varchar(36) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "UQ_8082ec4890f892f0bc77473a123" UNIQUE ("dataTableId", "name"), CONSTRAINT "FK_930b6e8faaf88294cef23484160" FOREIGN KEY ("dataTableId") REFERENCES "data_table" ("id") ON DELETE CASCADE)?
+indexsqlite_autoindex_project_relation_1project_relationK
+Ytableproject_relationproject_relationJCREATE TABLE "project_relation" ("projectId" varchar(36) NOT NULL, "userId" varchar NOT NULL, "role" varchar NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_5f0643f6717905a05164090dde7" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, CONSTRAINT "FK_61448d56d61802b5dfde5cdb002" FOREIGN KEY ("projectId") REFERENCES "project" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, CONSTRAINT "FK_c6b99592dc96b0d836d7a21db91" FOREIGN KEY ("role") REFERENCES "role" ("slug"), PRIMARY KEY ("projectId", "userId"))
+indexsqlite_autoindexQ
+uindexuser_role_idxuservCREATE INDEX "user_role_idx" ON "user" ("roleSlug") '
+indexsqlite_autoindex_role_1roletA
+indexsqlite_autoindex_data_table_column_2data_table_columnrA
+indexsqlite_autoindex_data_table_column_1data_table_columni3
+indexsqlite_autoindex_data_table_2data_tableW3
+indexsqlite_autoindex_data_table_1data_tableU
+Qtabledata_tabledata_tableLCREATE TABLE "data_table" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(128) NOT NULL, "projectId" varchar(36) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "UQ_b23096ef747281ac944d28e8b0d" UNIQUE ("projectId", "name"), CONSTRAINT "FK_c2a794257dee48af7c9abf681de" FOREIGN KEY ("projectId") REFERENCES "project" ("id") ON DELETE CASCADE)
+1indexIDX_61448d56d61802b5dfde5cdb00project_relationHCREATE INDEX "IDX_61448d56d61802b5dfde5cdb00" ON "project_relation" ("projectId") 
++indexIDX_5f0643f6717905a05164090ddeproject_relationGCREATE INDEX "IDX_5f0643f6717905a05164090dde" ON "project_relation" ("userId") 
+7indexIDX_8e~
+indexproject_relation_role_idxproject_relation(CREATE INDEX "project_relation_role_idx" ON "project_relation" ("role") 
+	;;global:adminnull 2global2026-01-06 14:13:53.5252026-01-06 14:13:53.525
+	;;project:chatUserproject2026-S
+	;;project:chatUsernull 8project2026-01-06 14:13:53.5252026-01-06 14:13:53.525Q
+	;;project:viewernull 7project2026-01-06 14:13:53.5252026-01-06 14:13:53.525Q
+	;;project:editornull 6project2026-01-06 14:13:53.5252026-01-06 14:13:53.525P
+	;;project:adminnull 5project2026-01-06 14:13:53.5252026-01-06 14:13:53.525X
+	;;project:personalOwnernull 4project2026-01-06 14:13:53.5252026-01-06 14:13:53.525O
+	;;global:membernull 3global2026-01-06 14:13:53.5252026-01-06 14:13:53.525H
+	;;global:ownerglobal2026-01-06 14:13:53.5252026-01-06 14:13:53.525
+project:chatUser
+project:viewer
+project:editor
+project:admin
+project:personalOwner
+global:member
+global:admin
+%	global:owner
+ginde
+]indexvari
+]indexvariables_global_key_uniquevariablesqCREATE UNIQUE INDEX "variables_global_key_unique"
+			 ON "variables" ("key")
+			 WHERE projectId IS NULL
+;indexvariables_project_key_uniquevariablespCREATE UNIQUEs
+indexIDX_UniqueRoleDisplayNamerole
+CREATE UNIQUE INDEX "IDX_UniqueRoleDisplayName" ON "role" ("displayName")
+indexsqlite_autoindex_chat_hub_sessions_1chat_hub_sessions
+tablechat_hub_sessionschat_hub_sessions~CREATE TABLE "chat_hub_sessions" ("id" varchar PRIMARY KEY NOT NULL, "title" varchar(256) NOT NULL, "ownerId" varchar NOT NUR
+indexsqlite_autoindex_oauth_authorization_codes_1oauth_authorization_codes
+ctableoauth_authorization_codesoauth_authorization_codes
+CREATE TABLE "oauth_authorization_codes" ("code" varchar(255) PRIMARY KEY NOT NULL, "clientId" varchar NOT NULL, "userId" varchar NOT NULL, "redirectUri" varchar(255) NOT NULL, "codeChallenge" varchar(255) NOT NULL, "codeChallengeMethod" varchar(255) NOT NULL, "expiresAt" bigint NOT NULL, "state" varchar(255), "used" boolean NOT NULL DEFAULT (false), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_64d965bd072ea24fb6da55468cd" FOREIGN KEY ("clientId") REFERENCES "oauth_clients" ("id") ON DELETE CASCADE, CONSTRAINT "FK_aa8d3560484944c19bdf79ffa16" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE):
+indexsqlite_autoindex_oauth_clients_1oauth_clients
+tableoauth_clientsoauth_clientskCREATE TABLE "oauth_clients" ("id" varchar PRIMARY KEY NOT NULL, "name" varchar(255) NOT NULL, "redirectUris" text NOT NULL, "grantTypes" text NOT NULL, "clientSecret" varchar(255), "clientSecretExpiresAt" bigint, "tokenEndpointAuthMethod" varchar(255) NOT NULL DEFAULT ('none'), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')))s
+indexIDX_UniqueRoleDisplayNamerole
+CREATE UNIQUE INDEX "IDX_UniqueRoleDisplayName" ON "role" ("displayName")
+indexIDX_a4da41795da1422f680c723e80insights_by_period9CREATE UNIQUE INDEX "IDX_a4da41795da1422f680c723e80" ON "insights_by_period" ("periodStart", "type", "periodUnit", "metaId") 
+]tableinsights_by_periodinsights_by_period8CREATE TABLE "insights_by_period" ("id" integer PRIMARY KEY NOT NULL, "metaId" integer NOT NULL, "type" integer NOT NULL, "value" bigint NOT NULL, "periodUnit" integer NOT NULL, "periodStart" datetime(0) DEFAULT (CURRENT_TIMESTAMP), CONSTRAINT "FK_e8881f2214df046dc2740260fe8" FOREIGN KEY ("metaId") REFERENCES "insights_metadata" ("metaId") ON DELETE CASCADE)
+!tableinsights_rawinsights_raw$CREATE TABLE "insights_raw" ("id" integer PRIMARY KEY NOT NULL, "metaId" integer NOT NULL, "type" integer NOT NULL, "value" bigint NOT NULL, "timestamp" datetime(0) NOT NULL DEFAULT (CURRENT_TIMESTAMP), CONSTRAINT "FK_d66d942bc9907488832eb0eed81" FOREIGN KEY ("metaId") REFERENCES "insights_metadata" ("metaId") ON DELETE CASCADE)
+]indexvariables_global_key_uniquevariablesqCREATE UNIQUE INDEX "variables_global_key_unique"
+			 ON "variables" ("key")
+			 WHERE projectId IS NULL
+;indexvariables_project_key_uniquevariablespCREATE UNIQUE INDEX "variables_project_key_unique" ON "variables" ("projectId", "key") 1
+indexsqlite_autoindex_variables_1variablesl
+AtablevariablesvariablesECREATE TABLE "variables" ("id" varchar(36) PRIMARY KEY NOT NULL, "key" text NOT NULL, "type" text NOT NULL DEFAULT ('string'), "value" text, "projectId" varchar(36), CONSTRAINT "FK_a0f13eaa709a21b77a3a9721319" FOREIGN KEY ("projectId") REFERENCES "project" ("id") ON DELETE CASCADE)9
+indexsqlite_autoindex_user_api_keys_3user_api_keysz9
+indexsqlite_autoindex_user_api_keys_2user_api_keysy9
+indexsqlite_autoindex_user_api_keys_1user_api_keysx
+%	global:owner
+9indexIDX_a4ff2d9b9628ea988fa9e7d0bfworkflow_dependency
+CREATE INDEX "IDX_a4ff2d9b9628ea988fa9e7d0bf" ON "workflow_dependency" ("workflowId") 
+itableworkflow_dependencyworkflow_dependency
+CREATE TABLE "workflow_dependency" ("id" integer PRIMARY KEY NOT NULL, "workflowId" varchar(36) NOT NULL, "workflowVersionId" integer NOT NULL, "dependencyType" varchar(32) NOT NULL, "dependencyKey" varchar(255) NOT NULL, "indexVersionId" smallint NOT NULL DEFAULT (1), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "dependencyInfo" TEXT CONSTRAINT workflow_dependency_chk_dependency_info_is_json CHECK("dependencyInfo" IS NULL OR json_valid("dependencyInfo")), CONSTRAINT "FK_a4ff2d9b9628ea988fa9e7d0bf8" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE CASCADE)
+atableoauth_access_tokensoauth_access_tokens
+CREATE TABLE "oauth_access_tokens" ("token" varchar PRIMARY KEY NOT NULL, "clientId" varchar NOT NULL, "userId" varchar NOT NULL, CONSTRAINT "FK_78b26968132b7e5e45b75876481" FOREIGN KEY ("clientId") REFERENCES "oauth_clients" ("id") ON DELETE CASCADE, CONSTRAINT "FK_7234a36d8e49a1fa85095328845" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE)F
+indexsqlite_autoindex_oauth_user_consents_1oauth_user_consents
++tableoauth_user_consentsoauth_user_consents
+CREATE TABLE "oauth_user_consents" ("id" integer PRIMARY KEY NOT NULL, "userId" varchar NOT NULL, "clientId" varchar NOT NULL, "grantedAt" bigint NOT NULL, CONSTRAINT "UQ_083721d99ce8db4033e2958ebb4" UNIQUE ("userId", "clientId"), CONSTRAINT "FK_a651acea2f6c97f8c4514935486" FOREIGN KEY ("clientId") REFERENCES "oauth_clients" ("id") ON DELETE CASCADE, CONSTRAINT "FK_21e6c3c2d78a097478fae6aaefa" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE)H
+indexsqlite_autoindex_oauth_refresh_tokens_1oauth_refresh_tokens
+ktableoauth_refresh_tokensoauth_refresh_tokens
+CREATE TABLE "oauth_refresh_tokens" ("token" varchar(255) PRIMARY KEY NOT NULL, "clientId" varchar NOT NULL, "userId" varchar NOT NULL, "expiresAt" bigint NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_b388696ce4d8be7ffbe8d3e4b69" FOREIGN KEY ("clientId") REFERENCES "oauth_clients" ("id") ON DELETE CASCADE, CONSTRAINT "FK_a699f3ed9fd0c1b19bc2608ac53" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE CASCADE)F
+indexsqlite_autoindex_oauth_access_tokens_1oauth_access_tokens
+indexsqlite_autoindex_oauth_authorization_codes_1oauth_authorization_codes
+ctableoauth_authorization_codesoauth_authorization_codes
+CREATE TABLE "oauth_authorization_codes" ("code" varchar(255) PRIMARY KEY NOT NULL, "clientId" varchar NOT NULL, "userId" varchar NOT NULL, "redirectUri" varchar(255) NOT NULL, "codeChallenge" varchar(255) NOT NULL, "codeChallengeMethod" varchar(255) NOT NULL, "expiresAt" bigint NOT NULL, "state" varchar(255), "used" boolean NOT NULL DEFAULT (false), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), CONSTRAINT "FK_64d965bd072ea24fb6da55468cd" FOREIGN KEY ("clientId") REFERENCES "oauth_clients" ("id") ON DELETE CASCADE, CONSTRAINT "FK_aa8d356048
+triggerworkflow_version_incrementworkflow_entityCREATE TRIGGER workflow_version_increment
+			AFTER UPDATE ON workflow_entity
+			FOR EACH ROW
+			WHEN OLD."versionCounter" = NEW."versionCounter"
+			BEGIN
+				UPDATE workflow_entity
+				SET "versionCounter" = "versionCounter" + 1
+				WHERE id = NEW.id;
+			END
+?indexIDX_e48a201071ab85d9d09119d640workflow_dependency
+CREATE INDEX "IDX_e48a201071ab85d9d09119d640" ON "workflow_dependency" ("dependencyKey") 
+AindexIDX_e7fe1cfda990c14a445937d0b9workflow_dependency
+CREATE INDEX "IDX_e7fe1cfda990c14a445937d0b9" ON "workflow_dependency" ("dependencyType") 
+indexsqlite_autoindex_temporary_workflow_entity_1temporary_workflow_entity|
+indexsqlite_autoindex_chat_hub_agents_1chat_hub_agents
+wtablechat_hub_agentschat_hub_agents~CREATE TABLE "chat_hub_agents" ("id" varchar PRIMARY KEY NOT NULL, "name" varchar(256) NOT NULL, "description" varchar(512), "systemPrompt" text NOT NULL, "ownerId" varchar NOT NULL, "credentialId" varchar(36), "provider" varchar(16) NOT NULL, "model" varchar(64) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "tools" text NOT NULL DEFAULT ('[]'), CONSTRAINT "FK_9c61ad497dcbae499c96a6a78ba" FOREIGN KEY ("credentialId") REFERENCES "credentials_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_441ba2caba11e077ce3fbfa2cd8" FOREIGN KEY ("ownerId") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)A
+indexsqlite_autoindex_chat_hub_sessions_1chat_hub_sessionsj
+[tablechat_hub_sessionschat_hub_sessionshCREATE TABLE "chat_hub_sessions" ("id" varchar PRIMARY KEY NOT NULL, "title" varchar(256) NOT NULL, "ownerId" varchar NOT NULL, "lastMessageAt" datetime(3), "credentialId" varchar(36), "provider" varchar(16), "model" varchar(64), "workflowId" varchar(36), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "agentId" varchar(36), "agentName" varchar(128), "tools" text NOT NULL DEFAULT ('[]'), CONSTRAINT "FK_9f9293d9f552496c40e0d1a8f80" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_7bc13b4c7e6afbfaf9be326c189" FOREIGN KEY ("credentialId") REFERENCES "credentials_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_e9ecf8ede7d989fcd18790fe36a" FOREIGN KEY ("ownerId") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)B
+indexsqlite_autoindex_chat_hub_messages_1chat_hub_messages
+tablechat_hub_messageschat_hub_messages
+CREATE TABLE "chat_hub_messages" ("id" varchar PRIMARY KEY NOT NULL, "sessionId" varchar NOT NULL, "previousMessageId" varchar, "revisionOfMessageId" varchar, "retryOfMessageId" varchar, "type" varchar(16) NOT NULL, "name" varchar(128) NOT NULL, "content" text NOT NULL, "provider" varchar(16), "model" varchar(64), "workflowId" varchar(36), "executionId" integer, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "agentId" varchar(36), "status" varchar(16) NOT NULL DEFAULT ('success'), "attachments" text, CONSTRAINT "FK_6afb260449dd7a9b85355d4e0c9" FOREIGN KEY ("executionId") REFERENCES "execution_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_1f4998c8a7dec9e00a9ab15550e" FOREIGN KEY ("revisionOfMessageId") REFERENCES "chat_hub_messages" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, CONSTRAINT "FK_25c9736e7f769f3a005eef4b372" FOREIGN KEY ("retryOfMessageId") REFERENCES "chat_hub_messages" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, CONSTRAINT "FK_acf8926098f063cdbbad8497fd1" FOREIGN KEY ("workflowId") REFERENCES "workflow_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_e5d1fa722c5a8d38ac204746662" FOREIGN KEY ("previousMessageId") REFERENCES "chat_hub_messages" ("id") ON DELETE CASCADE ON UPDATE NO ACTION, CONSTRAINT "FK_e22538eb50a71a17954cd7e076c" FOREIGN KEY ("sessionId") REFERENCES "chat_hub_sessions" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)
+triggerworkflow_version_incrementworkflow_entityCREATE TRIGGER workflow_version_increment
+			AFTER UPDATE ON workflow_entity
+			FOR EACH ROW
+			WHEN OLD."versionCounter" = NEW."versionCounter"
+			BEGIN
+				UPDATE workflow_entity
+				SET "versionCounter" = "versionCounter" + 1
+				WHERE id = NEW.id;
+			END
+X	B	
+otabletemporary_workflow_entitytemporary_workflow_entitymCREATE TABLE "temporary_workflow_entity" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(128) NOT NULL, "active" boolean NOT NULL, "nodes" text, "connections" text, "settings" text, "staticData" text, "pinData" text, "versionId" varchar(36) NOT NULL, "triggerCount" integer DEFAULT (0), "meta" text, "parentFolderId" varchar(36), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "isArchived" boolean NOT NULL DEFAULT (FALSE), "versionCounter" integer NOT NULL DEFAULT (1), "description" text, CONSTRAINT "FK_04a4db5906fbc5606c71448d912" FOREIGN KEY ("parentFolderId") REFERENCES "folder" ("id") ON DELETE CASCADE ON UPDATE N
+triggerworkflow_version_incrementworkflow_entityCREATE TRIGGER workflow_version_increment
+			AFTER UPDATE ON workflow_entity
+			FOR EACH ROW
+			WHEN OLD."versionCounter" = NEW."versionCounter"
+			BEGIN
+				UPDATE workflow_entity
+				SET "versionCounter" = "versionCounter" + 1
+				WHERE id = NEW.id;
+			END
+%indexIDX_e10425f6ab9964c4c1623a4a03workflow_entityoCREATE INDEX "IDX_e10425f6ab9964c4c1623a4a03" ON "workflow_entity" ("name") =
+indexsqlite_autoindex_workflow_entity_1workflow_entityn
+[tableworkflow_entityworkflow_entitymCREATE TABLE "workflow_entity" ("id" varchar(36) PRIMARY KEY NOT NULL, "name" varchar(128) NOT NULL, "active" boolean NOT NULL, "nodes" text, "connections" text, "settings" text, "staticData" text, "pinData" text, "versionId" varchar(36) NOT NULL, "triggerCount" integer DEFAULT (0), "meta" text, "parentFolderId" varchar(36), "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "isArchived" boolean NOT NULL DEFAULT (FALSE), "versionCounter" integer NOT NULL DEFAULT (1), "description" text, CONSTRAINT "FK_04a4db5906fbc5606c71448d912" FOREIGN KEY ("parentFolderId") REFERENCES "folder" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)=
+indexsqlite_autoindex_chat_hub_agents_1chat_hub_agents
+wtablechat_hub_agentschat_hub_agents~CREATE TABLE "chat_hub_agents" ("id" varchar PRIMARY KEY NOT NULL, "name" varchar(256) NOT NULL, "description" varchar(512), "systemPrompt" text NOT NULL, "ownerId" varchar NOT NULL, "credentialId" varchar(36), "provider" varchar(16) NOT NULL, "model" varchar(64) NOT NULL, "createdAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "updatedAt" datetime(3) NOT NULL DEFAULT (STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')), "tools" text NOT NULL DEFAULT ('[]'), CONSTRAINT "FK_9c61ad497dcbae499c96a6a78ba" FOREIGN KEY ("credentialId") REFERENCES "credentials_entity" ("id") ON DELETE SET NULL ON UPDATE NO ACTION, CONSTRAINT "FK_441ba2caba11e077ce3fbfa2cd8" FOREIGN KEY ("ownerId") REFERENCES "user" ("id") ON DELETE CASCADE ON UPDATE NO ACTION)A
+indexsqlite_autoindex_chat_hub_sessions_1chat_hub_sessionsj

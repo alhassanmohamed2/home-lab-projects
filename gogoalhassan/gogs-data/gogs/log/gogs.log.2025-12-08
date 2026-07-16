@@ -1,0 +1,5 @@
+2025/12/08 14:33:53 [ INFO] Gogs 0.14.0+dev
+2025/12/08 14:33:54 [ INFO] Git config user.email set to gogs@fake.local
+2025/12/08 14:33:54 [ INFO] Git config user.name set to Gogs
+2025/12/08 14:33:54 [ INFO] Run mode: Production
+2025/12/08 14:33:54 [ INFO] First-time run install finished!

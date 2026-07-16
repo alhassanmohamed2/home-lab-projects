@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  snake-game:
+    # Builds the image from the Dockerfile in the current directory
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    container_name: node-server-3000
+    
+    # Maps port 3000 on the host to 3000 in the container
+    ports:
+      - "3000:3000"
+    
+    # Automatically restarts the container if it crashes or the server reboots
+    restart: unless-stopped
+    
+    # SAFETY LOCKS: Prevents the "3-minute death" of your SSH connection
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'     # Caps CPU usage at 50% of one core
+          memory: 512M     # Hard limit on RAM usage
+        reservations:
+          memory: 128M     # Guarantees this much RAM is available
+
+    # Optional: Environmental variables (add as needed)
+    environment:
+      - NODE_ENV=production

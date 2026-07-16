@@ -1,0 +1,26 @@
+2026/01/26 10:15:52 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp: lookup db on 127.0.0.11:53: no such host
+2026/01/26 10:15:53 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:15:54 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:15:55 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:15:56 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:15:57 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:15:59 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:16:00 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:16:01 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:16:02 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:16:04 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:16:05 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/26 10:16:06 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused

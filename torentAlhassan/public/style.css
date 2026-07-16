@@ -1,0 +1,546 @@
+:root {
+  --bg: #0a0a0a;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --accent: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  --accent-single: #4facfe;
+  --primary: #4facfe;
+  --text: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --danger: #ff4d4d;
+  --success: #00ff88;
+  --glass: blur(10px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 0;
+}
+
+/* Background Blobs */
+.background-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  filter: blur(140px);
+  opacity: 0.2;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--accent-single);
+  top: -100px;
+  right: -100px;
+  animation: float 20s infinite alternate;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: #ff00ea;
+  bottom: -150px;
+  left: -150px;
+  animation: float 25s infinite alternate-reverse;
+}
+
+@keyframes float {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(50px, 50px) scale(1.1); }
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  padding: 40px 20px;
+  z-index: 10;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo .icon {
+  font-size: 32px;
+}
+
+.logo h1 {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo h1 span {
+  background: var(--accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card-bg);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  backdrop-filter: var(--glass);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--success);
+  transition: all 0.3s ease;
+}
+
+.status-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+/* Add Torrent Card */
+.add-torrent-card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid var(--card-border);
+  backdrop-filter: var(--glass);
+  margin-bottom: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  padding: 18px 24px;
+  border-radius: 16px;
+  color: var(--text);
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent-single);
+  box-shadow: 0 0 15px rgba(79, 172, 254, 0.2);
+}
+
+button {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 18px 30px;
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Input Tabs */
+.input-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 10px;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.tab-btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  transform: none;
+  box-shadow: none;
+}
+
+.tab-btn.active {
+  color: var(--text);
+  background: var(--card-bg);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Upload Area */
+.upload-area {
+  border: 2px dashed var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.upload-area:hover, .upload-area.dragover {
+  border-color: var(--accent-single);
+  background: rgba(0, 242, 254, 0.05);
+}
+
+.upload-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.upload-prompt p {
+  color: var(--text-secondary);
+}
+
+.upload-prompt span {
+  color: var(--accent-single);
+  font-weight: 600;
+}
+
+/* Helper text */
+.helper-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Torrent List */
+.torrent-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.badge {
+  background: var(--accent-single);
+  color: var(--bg);
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.torrent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px;
+  color: var(--text-secondary);
+  border: 2px dashed var(--card-border);
+  border-radius: 20px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+/* Torrent Card */
+.torrent-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: var(--glass);
+  animation: fadeIn 0.4s ease-out;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.torrent-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.name-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.torrent-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.stats-inline {
+  display: flex;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.action-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: 15px;
+}
+
+.pause-btn, .delete-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.pause-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.pause-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: none;
+  box-shadow: none;
+}
+
+.pause-btn.resume {
+  background: rgba(0, 242, 254, 0.2);
+  color: #00f2fe;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.15);
+}
+
+.delete-btn {
+  background: rgba(255, 59, 48, 0.1);
+  color: var(--danger);
+}
+
+.delete-btn:hover {
+  background: var(--danger);
+  color: white;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Paused state */
+.torrent-card.paused {
+  opacity: 0.6;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.torrent-card.paused .progress-fill {
+  background: #555 !important;
+  transition: background 0.3s;
+}
+
+/* Done state */
+.torrent-card.done {
+  border-color: rgba(0, 255, 136, 0.2);
+}
+
+/* Progress bar */
+.progress-container {
+  margin-bottom: 5px;
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+.progress-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.speed-group {
+  display: flex;
+  gap: 15px;
+}
+
+/* ── Mobile Responsiveness ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .add-torrent-card {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input, #add-btn {
+    width: 100%;
+    padding: 15px 20px;
+  }
+
+  .input-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
+  }
+
+  .torrent-info {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .action-group {
+    margin-left: 0;
+  }
+
+  .torrent-name {
+    white-space: normal;
+    font-size: 1rem;
+    word-break: break-word;
+  }
+
+  .action-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .pause-btn, .delete-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .upload-area {
+    padding: 30px 20px;
+  }
+
+  .progress-details {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .speed-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo .icon {
+    font-size: 28px;
+  }
+
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+
+  .status-indicator {
+    width: 100%;
+    justify-content: center;
+  }
+}

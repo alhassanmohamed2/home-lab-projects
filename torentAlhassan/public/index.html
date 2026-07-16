@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TorrentFlow | Premium Torrent Downloader</title>
+    <meta name="description" content="TorrentFlow - A premium, self-hosted web-based torrent downloader with real-time progress tracking.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <div class="logo">
+                <span class="icon">⚡</span>
+                <h1>Torrent<span>Flow</span></h1>
+            </div>
+            <div class="status-indicator">
+                <span class="dot"></span>
+                <span class="status-text">Connecting...</span>
+            </div>
+        </header>
+
+        <section class="add-torrent-card">
+            <div class="input-tabs">
+                <button class="tab-btn active" data-tab="magnet">Magnet Link</button>
+                <button class="tab-btn" data-tab="file">Upload Torrent</button>
+            </div>
+            
+            <div class="tab-content active" id="magnet-tab">
+                <div class="input-group">
+                    <input type="text" id="magnet-input" placeholder="Paste magnet link (magnet:?xt=...)" aria-label="Magnet Link">
+                    <button id="add-btn">Add Torrent</button>
+                </div>
+                <p class="helper-text">Supports magnet links, info hashes, and direct URLs</p>
+            </div>
+
+            <div class="tab-content" id="file-tab">
+                <div class="upload-area" id="drop-zone">
+                    <input type="file" id="torrent-file" accept=".torrent" hidden>
+                    <div class="upload-prompt">
+                        <span class="upload-icon">📁</span>
+                        <p>Drag & Drop or <span>Click to Upload</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="torrent-list-container">
+            <header class="section-header">
+                <h2>Active Downloads</h2>
+                <div id="active-count" class="badge">0</div>
+            </header>
+            
+            <div id="torrent-list" class="torrent-list">
+                <div class="empty-state">
+                    <div class="empty-icon">📂</div>
+                    <p>No active downloads</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js?v=101"></script>
+</body>
+</html>

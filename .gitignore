@@ -1,0 +1,42 @@
+# Global .gitignore for homelabProjects
+# Dependencies
+node_modules/
+bower_components/
+jspm_packages/
+web_modules/
+
+# Python virtual envs & caching
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE and Editor configs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Sensitive credential files (just in case they get created)
+.env
+.env.*
+*.pem
+*.key
+*.csv
+credentials.json
+secrets.json
+config.json
+
+# Local build / Dist folders
+dist/
+build/
+target/
+.next/
+.nuxt/
+out/

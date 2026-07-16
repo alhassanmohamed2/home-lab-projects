@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: altupe
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "8047:8047"
+    environment:
+      DATABASE_URL: mysql+pymysql://user:password@db/altupe
+      HDD_STORAGE_PATH: /mnt/data/altupe_videos
+    volumes:
+      - ./backend:/app
+      - /mnt/data/altupe_videos:/mnt/data/altupe_videos
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - "9871:80"
+    depends_on:
+      - backend
+    extra_hosts:
+      - "mautic.alhassan.life:host-gateway"
+    networks:
+      - default
+      - mautic_net
+
+networks:
+  mautic_net:
+    external: true
+    name: market_agent_default
+
+volumes:
+  db_data:

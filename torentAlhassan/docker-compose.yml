@@ -1,0 +1,22 @@
+
+
+services:
+  torrent-flow:
+    build: .
+    container_name: torrent-flow
+    ports:
+      - "8214:8214"
+    volumes:
+      - ./data:/app/data
+      # REPLACE '/path/to/your/hdd/downloads' with the actual path on your HDD
+      - /mnt/data/downloads:/downloads
+    restart: unless-stopped
+    environment:
+      - PORT=8214
+      - DOWNLOAD_PATH=/downloads
+    networks:
+      - torrent-network
+
+networks:
+  torrent-network:
+    driver: bridge

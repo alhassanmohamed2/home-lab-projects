@@ -1,0 +1,6 @@
+2025/12/22 19:22:15 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.2:3306: connect: connection refused
+2025/12/22 19:22:16 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.2:3306: connect: connection refused
+2025/12/22 19:22:17 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.2:3306: connect: connection refused

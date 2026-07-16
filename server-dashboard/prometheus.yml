@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+
+# 1. Load the Rules File (Defines when to alert)
+rule_files:
+  - "alert_rules.yml"
+
+# 2. Connect to Alertmanager (Sends the email)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']

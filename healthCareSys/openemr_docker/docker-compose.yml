@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mariadb:11
+    restart: always
+    command: ['mariadbd', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: openemr
+      MYSQL_PASSWORD: openemrpass
+      MYSQL_DATABASE: openemr
+    volumes:
+      - database-volume:/var/lib/mysql
+
+  openemr:
+    image: openemr/openemr:7.0.2
+    restart: always
+    command: ["/bin/sh", "-c", "(sleep 20 && chmod 644 /etc/ssl/private/selfsigned.key.pem) & sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/httpd.conf && sed -i 's/AllowOverride FileInfo/AllowOverride All/g' /etc/apache2/conf.d/openemr.conf && sed -i 's/Options -Indexes/Options -Indexes +FollowSymLinks/g' /etc/apache2/conf.d/openemr.conf && sed -i 's/memory_limit = .*/memory_limit = 1024M/' /etc/php82/php.ini && sed -i 's/max_execution_time = .*/max_execution_time = 300/' /etc/php82/php.ini && sed -i 's/max_input_vars = .*/max_input_vars = 5000/' /etc/php82/php.ini && sed -i 's/post_max_size = .*/post_max_size = 128M/' /etc/php82/php.ini && sed -i 's/upload_max_filesize = .*/upload_max_filesize = 128M/' /etc/php82/php.ini && echo 'LimitRequestLine 1048576' >> /etc/apache2/httpd.conf && echo 'LimitRequestFieldSize 1048576' >> /etc/apache2/httpd.conf && ln -sfn default /var/www/localhost/htdocs/openemr/sites/oauth2 && ./openemr.sh"]
+    ports:
+      - 8301:80
+      - 8444:443
+    environment:
+      OE_USER: admin
+      OE_PASS: pass
+      MYSQL_HOST: mysql
+      MYSQL_ROOT_PASS: rootpass
+      MYSQL_USER: openemr
+      MYSQL_PASS: openemrpass
+      OE_CORS_ALLOW_ORIGINS: https://openemr.alhassan.cloud
+    volumes:
+      - openemr-volume:/var/www/localhost/htdocs/openemr/sites
+      - log-volume:/var/log
+    depends_on:
+      - mysql
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
+volumes:
+  database-volume:
+  openemr-volume:
+  log-volume:

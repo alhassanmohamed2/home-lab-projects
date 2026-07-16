@@ -1,0 +1,14 @@
+2026/04/01 18:29:19 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.2:3306: connect: connection refused
+2026/04/01 18:29:20 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.2:3306: connect: connection refused
+2026/04/01 18:29:21 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.2:3306: connect: connection refused
+2026/04/01 18:29:22 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.2:3306: connect: connection refused
+2026/04/01 18:29:24 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.2:3306: connect: connection refused
+2026/04/01 19:11:03 gogs.io/gogs/internal/database/users.go:80 record not found
+[12.115ms] [rows:0] SELECT * FROM `user` WHERE email = 'alhassan200012@gmail.com' ORDER BY `user`.`id` LIMIT 1
+2026/04/01 19:11:08 gogs.io/gogs/internal/database/users.go:80 record not found
+[1.292ms] [rows:0] SELECT * FROM `user` WHERE email = 'alhassan200012@gmail.com' ORDER BY `user`.`id` LIMIT 1

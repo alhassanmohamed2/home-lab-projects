@@ -1,0 +1,21 @@
+version: '3'
+services:
+  stalwart:
+    image: stalwartlabs/stalwart:latest
+    container_name: stalwart
+    restart: always
+    ports:
+      - "25:25"      # SMTP
+      - "8035:8080"  # Admin UI & Webmail
+      - "453:443"    # HTTPS
+      - "587:587"    # Submission
+      - "993:993"    # IMAP
+      - "4190:4190"  # Sieve
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - ./data:/opt/stalwart/data
+    environment:
+      # Replace with your actual domain
+      - STALWART_DOMAIN=alhassan.cloud

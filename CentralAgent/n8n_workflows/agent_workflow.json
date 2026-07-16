@@ -1,0 +1,186 @@
+{
+    "name": "System Monitoring Agent (Real)",
+    "nodes": [
+        {
+            "parameters": {
+                "updates": [
+                    "message"
+                ],
+                "additionalFields": {}
+            },
+            "name": "Telegram Trigger",
+            "type": "n8n-nodes-base.telegramTrigger",
+            "typeVersion": 1,
+            "position": [
+                460,
+                300
+            ],
+            "credentials": {
+                "telegramApi": {
+                    "id": "YOUR_CREDENTIAL_ID",
+                    "name": "Telegram account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "dataType": "string",
+                "value1": "={{$json[\"message\"][\"text\"]}}",
+                "rules": {
+                    "rules": [
+                        {
+                            "operation": "contains",
+                            "value2": "status",
+                            "output": 0
+                        },
+                        {
+                            "operation": "contains",
+                            "value2": "docker",
+                            "output": 1
+                        },
+                        {
+                            "operation": "contains",
+                            "value2": "jenkins",
+                            "output": 2
+                        }
+                    ]
+                }
+            },
+            "name": "Router",
+            "type": "n8n-nodes-base.switch",
+            "typeVersion": 1,
+            "position": [
+                680,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "http://CLIENT_IP_OR_HOST_DOCKER_INTERNAL:8000/system/status",
+                "method": "GET",
+                "options": {}
+            },
+            "name": "Get System Stats",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 2,
+            "position": [
+                900,
+                100
+            ]
+        },
+        {
+            "parameters": {
+                "url": "http://CLIENT_IP_OR_HOST_DOCKER_INTERNAL:8000/docker/containers",
+                "method": "GET",
+                "options": {}
+            },
+            "name": "Get Docker Stats",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 2,
+            "position": [
+                900,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "chatId": "={{$node[\"Telegram Trigger\"].json[\"message\"][\"chat\"][\"id\"]}}",
+                "text": "=System Status:\nCPU: {{$json[\"cpu_percent\"]}}%\nRAM: {{$json[\"memory_percent\"]}}%\nDisk: {{$json[\"disk_percent\"]}}%",
+                "additionalFields": {}
+            },
+            "name": "Reply System",
+            "type": "n8n-nodes-base.telegram",
+            "typeVersion": 1,
+            "position": [
+                1100,
+                100
+            ],
+            "credentials": {
+                "telegramApi": {
+                    "id": "YOUR_CREDENTIAL_ID",
+                    "name": "Telegram account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "chatId": "={{$node[\"Telegram Trigger\"].json[\"message\"][\"chat\"][\"id\"]}}",
+                "text": "=Running Containers: {{$json[\"count\"]}}\n\n{{$json[\"containers\"].map(c => `- ${c.name} (${c.status})`).join('\\n')}}",
+                "additionalFields": {}
+            },
+            "name": "Reply Docker",
+            "type": "n8n-nodes-base.telegram",
+            "typeVersion": 1,
+            "position": [
+                1100,
+                300
+            ],
+            "credentials": {
+                "telegramApi": {
+                    "id": "YOUR_CREDENTIAL_ID",
+                    "name": "Telegram account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Telegram Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Router",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Router": {
+            "main": [
+                [
+                    {
+                        "node": "Get System Stats",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Get Docker Stats",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Get System Stats",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get System Stats": {
+            "main": [
+                [
+                    {
+                        "node": "Reply System",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Docker Stats": {
+            "main": [
+                [
+                    {
+                        "node": "Reply Docker",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

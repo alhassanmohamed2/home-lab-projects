@@ -1,0 +1,91 @@
+services:
+  mautic_db:
+    image: mariadb:10.11
+    container_name: mautic_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mautic_root_password
+      MYSQL_DATABASE: mautic
+      MYSQL_USER: mautic
+      MYSQL_PASSWORD: mautic
+    volumes:
+      - mautic_db_data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  mautic_web:
+    image: mautic/mautic:5-apache
+    container_name: mautic_web
+    restart: always
+    links:
+      - mautic_db:mysql
+    depends_on:
+      - mautic_db
+    ports:
+      - "7777:80"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    environment:
+      - MAUTIC_DB_HOST=mautic_db
+      - MAUTIC_DB_USER=mautic
+      - MAUTIC_DB_PASSWORD=mautic
+      - MAUTIC_DB_DATABASE=mautic
+      - MAUTIC_RUN_CRON_JOBS=false
+      - DOCKER_MAUTIC_ROLE=mautic_web
+      - PHP_INI_VALUE_DATE_TIMEZONE=UTC
+    volumes:
+      - mautic_data:/var/www/html
+
+  mautic_cron:
+    image: mautic/mautic:5-apache
+    container_name: mautic_cron
+    restart: always
+    links:
+      - mautic_db:mysql
+    depends_on:
+      - mautic_db
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    environment:
+      - MAUTIC_DB_HOST=mautic_db
+      - MAUTIC_DB_USER=mautic
+      - MAUTIC_DB_PASSWORD=mautic
+      - MAUTIC_DB_DATABASE=mautic
+      - DOCKER_MAUTIC_ROLE=mautic_cron
+    volumes:
+      - mautic_data:/var/www/html
+
+  mautic_worker:
+    image: mautic/mautic:5-apache
+    container_name: mautic_worker
+    restart: always
+    links:
+      - mautic_db:mysql
+    depends_on:
+      - mautic_db
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    environment:
+      - MAUTIC_DB_HOST=mautic_db
+      - MAUTIC_DB_USER=mautic
+      - MAUTIC_DB_PASSWORD=mautic
+      - MAUTIC_DB_DATABASE=mautic
+      - DOCKER_MAUTIC_ROLE=mautic_worker
+    volumes:
+      - mautic_data:/var/www/html
+
+volumes:
+  mautic_db_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/data/mautic/db
+  mautic_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/data/mautic/app

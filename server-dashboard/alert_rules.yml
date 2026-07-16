@@ -1,0 +1,60 @@
+groups:
+  - name: server_alerts
+    rules:
+      # 1. Server Down (Shutdown or crashed)
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
+
+      # 2. High Temperature (> 80°C)
+      - alert: HighTemperature
+        expr: node_hwmon_temp_celsius > 80
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High temperature detected"
+          description: "Temperature is {{ $value }}°C on {{ $labels.instance }}."
+
+      # 3. High CPU Load
+      - alert: HighCpuLoad
+        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
+        for: 5m
+        annotations:
+          summary: "High CPU Load"
+
+      # 4. Network Interface Down (Cable Unplugged)
+      # Checks if the physical link (carrier) is 0 (Down) for non-virtual interfaces
+      - alert: NetworkInterfaceDown
+        expr: node_network_carrier{device!~"lo|docker.|veth.*|br.*"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Network Cable Unplugged"
+          description: "The network interface {{ $labels.device }} on {{ $labels.instance }} is down."
+
+      # 5. SERVER REBOOTED (This is the one you were missing)
+      - alert: ServerRebooted
+        expr: time() - node_boot_time_seconds < 300
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Server Recently Rebooted"
+          description: "The server {{ $labels.instance }} restarted approx {{ $value | humanizeDuration }} ago."
+    
+      # 6. TEST ALERT (Delete this after it works)
+      # - alert: DockerRestart
+      #   expr: vector(1)
+      #   for: 0m
+      #   labels:
+      #     severity: warning
+      #   annotations:
+      #     summary: "Docker restart alert"
+      #     description: "If you receive this, The Docker alerting is working fine and up."

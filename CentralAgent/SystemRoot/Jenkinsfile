@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    environment {
+        // Placeholder credentials - User must configure these in Jenkins
+        GITHUB_CREDENTIALS_ID = 'github-creds' 
+        DOCKER_REGISTRY_CREDENTIALS_ID = 'docker-hub-creds'
+    }
+
+    stages {
+        stage('Initialize') {
+            steps {
+                script {
+                    echo 'Loading Project Configuration...'
+                    def configFile = readFile 'project_config.json'
+                    def config = readJSON text: configFile
+                    currentBuild.description = "Projects: ${config.projects.join(', ')}"
+                    env.PROJECT_LIST = config.projects.join(',')
+                }
+            }
+        }
+
+        stage('Build & Push') {
+            steps {
+                script {
+                    def projects = env.PROJECT_LIST.split(',')
+                    projects.each { project ->
+                        dir("projects/${project}") {
+                            if (fileExists('Dockerfile')) {
+                                echo "Building ${project}..."
+                                // Logic to check changes could go here in a refined version
+                                // For now, we rebuild if it exists in the commit
+                                
+                                sh "docker build -t ${project}:latest ."
+                                // push logic would go here if registry was configured
+                                // sh "docker push user/${project}:latest"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Notify Agent') {
+            steps {
+                // Determine n8n webhook URL - placeholder
+                // httpRequest url: 'http://n8n:5678/webhook/jenkins-status',
+                //             httpMode: 'POST',
+                //             requestBody: "{\"status\": \"${currentBuild.currentResult}\"}"
+                echo "Notification sent to Agent (Simulated)"
+            }
+        }
+    }
+}

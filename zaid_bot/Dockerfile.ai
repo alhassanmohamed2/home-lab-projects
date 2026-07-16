@@ -1,0 +1,35 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies (required for some python packages)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+# We use --no-cache-dir to keep image small
+# Installing torch CPU version first if GPU not available, but generic install works usually.
+# LightOnOCR requirements: transformers, torch, pillow, timm
+RUN pip install --no-cache-dir \
+    torch \
+    transformers \
+    accelerate \
+    pillow \
+    fastapi \
+    uvicorn \
+    python-multipart \
+    requests \
+    timm \
+    einops
+
+# Copy application code
+COPY ai_service .
+
+# Expose port
+EXPOSE 8000
+
+# Start command
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

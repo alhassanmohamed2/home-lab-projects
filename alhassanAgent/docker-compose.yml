@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  voice-assistant:
+    build: .
+    container_name: voice_assistant
+    ports:
+      - "8270:8000"
+    pid: host
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      # Mount host root as /host to allow checking disk usage of host if needed
+      # (e.g. df -h /host)
+      - /:/host:ro
+    restart: unless-stopped

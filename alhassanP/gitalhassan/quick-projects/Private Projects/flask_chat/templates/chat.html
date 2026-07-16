@@ -1,0 +1,12 @@
+{% for message in data_array %}
+<div class="card message-card">
+    <div class="card-header message-header">
+        {{ message[2] }} at {{ message[3] }}
+        <button class="btn btn-sm btn-warning edit float-end me-1" data-msg-id="{{ message[0] }}" data-msg-text="{{ message[1] }}">Edit</button>
+        <button class="btn btn-sm btn-danger delete float-end me-1" data-msg-id="{{ message[0] }}">Delete</button>
+    </div>
+    <div class="card-body">
+        {{ message[1] | safe }}
+    </div>
+</div>
+{% endfor %}

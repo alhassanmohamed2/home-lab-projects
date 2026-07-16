@@ -1,0 +1,312 @@
+Starting n8n backup to ./data/backups/2026-01-07_00-00-02...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-07_00-00-02/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-07_00-00-02/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-07_00-00-02/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-07_00-00-02/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-07_00-00-02
+Contents:
+total 51M
+-rw-r--r-- 1 root root 51M Jan  6 21:58 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-09_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-09_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-09_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-09_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-09_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-09_00-00-01
+Contents:
+total 51M
+-rw-r--r-- 1 root root 51M Jan  7 04:12 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-10_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-10_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-10_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-10_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-10_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-10_00-00-01
+Contents:
+total 51M
+-rw-r--r-- 1 root root 51M Jan  7 04:12 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-12_00-00-03...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-12_00-00-03/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-12_00-00-03/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-12_00-00-03/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-12_00-00-03/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-12_00-00-03
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-14_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-14_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-14_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-14_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-14_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-14_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-22_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-22_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-22_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-22_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-22_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-22_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-23_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-23_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-23_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-23_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-23_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-23_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-24_00-00-02...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-24_00-00-02/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-24_00-00-02/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-24_00-00-02/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-24_00-00-02/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-24_00-00-02
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-25_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-25_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-25_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-25_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-25_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-25_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-26_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-26_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-26_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-26_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-26_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-26_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-27_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-27_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-27_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-27_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-27_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-27_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-28_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-28_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-28_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-28_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-28_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-28_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-29_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-29_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-29_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-29_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-29_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-29_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-01-30_00-00-01...
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-30_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-30_00-00-01/workflows.json'
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-30_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-01-30_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-01-30_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jan 10 18:08 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-03-01_00-00-01...
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-03-01_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-03-01_00-00-01/workflows.json'
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-03-01_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-03-01_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-03-01_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Feb 20 19:34 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-04-02_00-00-01...
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-02_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-02_00-00-01/workflows.json'
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-02_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-02_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-04-02_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Mar  8 04:51 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-04-03_00-00-01...
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-03_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-03_00-00-01/workflows.json'
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-03_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-03_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-04-03_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Mar  8 04:51 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-04-08_00-00-01...
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-08_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-08_00-00-01/workflows.json'
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-08_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-08_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-04-08_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Apr  6 15:51 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-04-11_00-00-01...
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-11_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-11_00-00-01/workflows.json'
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-11_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-11_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-04-11_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Apr 10 03:12 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-04-12_00-00-01...
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting workflows. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-12_00-00-01/workflows.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-12_00-00-01/workflows.json'
+Error tracking disabled because this release is older than 6 weeks.
+Error exporting credentials. See log messages for details.
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-12_00-00-01/credentials.json'
+ENOENT: no such file or directory, open '/home/node/.n8n-files/backups/2026-04-12_00-00-01/credentials.json'
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-04-12_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Apr 10 03:12 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-07-15_00-00-01...
+Error response from daemon: container 195028bd067f20e5421da8d16b2a1fa83ad5fd5c6f31539b6dba5a33735367d7 is not running
+Error response from daemon: container 195028bd067f20e5421da8d16b2a1fa83ad5fd5c6f31539b6dba5a33735367d7 is not running
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-07-15_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jul 14 18:05 database.sqlite
+------------------------------------------------
+Starting n8n backup to ./data/backups/2026-07-16_00-00-01...
+Error response from daemon: container 195028bd067f20e5421da8d16b2a1fa83ad5fd5c6f31539b6dba5a33735367d7 is not running
+Error response from daemon: container 195028bd067f20e5421da8d16b2a1fa83ad5fd5c6f31539b6dba5a33735367d7 is not running
+------------------------------------------------
+Backup Completed Successfully!
+Location: ./data/backups/2026-07-16_00-00-01
+Contents:
+total 52M
+-rw-r--r-- 1 root root 52M Jul 14 18:05 database.sqlite
+------------------------------------------------

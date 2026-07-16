@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  rocketchat:
+    image: registry.rocket.chat/rocketchat/rocket.chat:latest
+    restart: unless-stopped
+    volumes:
+      - uploads:/app/uploads
+    environment:
+      - PORT=3000
+      - ROOT_URL=http://localhost:6857
+      - MONGO_URL=mongodb://mongo:27017/rocketchat?replicaSet=rs0&directConnection=true
+      - MONGO_OPLOG_URL=mongodb://mongo:27017/local?replicaSet=rs0&directConnection=true
+      - INITIAL_USER=yes
+      - ADMIN_USERNAME=alhassan2000
+      - ADMIN_PASS=Alhassan123wolf
+      - ADMIN_EMAIL=alhassan200012@gmail.com
+      - ADMIN_NAME=Alhassan Mohamed
+    depends_on:
+      - mongo
+    ports:
+      - "6857:3000"
+
+  mongo:
+    image: mongo:5.0
+    restart: unless-stopped
+    volumes:
+      - db-data:/data/db
+    command: mongod --oplogSize 128 --replSet rs0 --bind_ip_all
+    # Healthcheck to ensure mongo is ready before other services might try to use it comprehensively,
+    # though the init script handles the replica set initialization.
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  # this container's job is just run the command to initialize the replica set.
+  # it will run the command and remove itself (it won't stay running)
+  mongo-init-replica:
+    image: mongo:5.0
+    command: >
+      bash -c "for i in `seq 1 30`; do
+          mongo mongo/rocketchat --eval \"
+            rs.initiate({
+              _id: 'rs0',
+              members: [ { _id: 0, host: 'localhost:27017' } ]
+            })\" &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 secs...\";
+          sleep 5;
+        done; (exit $$s)"
+    depends_on:
+      - mongo
+
+volumes:
+  uploads:
+  db-data:

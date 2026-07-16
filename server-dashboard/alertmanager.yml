@@ -1,0 +1,36 @@
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: '******************************'
+  smtp_auth_username: '*************************'
+  smtp_auth_password: '***********************'
+  smtp_require_tls: true
+
+route:
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'email-notifications'
+
+receivers:
+  - name: 'email-notifications'
+    email_configs:
+      - to: '***********************'
+        send_resolved: true
+        # We use the "|" symbol to safely start a multi-line HTML block
+        html: |
+          {{ template "email.default.html" . }}
+          <br>
+          <div style="font-family: sans-serif; padding: 10px; background-color: #f4f4f4; border-radius: 5px;">
+            <strong>🇪🇬 Cairo Time:</strong> 
+            {{ range .Alerts }}
+              {{ .StartsAt.Local.Format "2006-01-02 03:04:05 PM" }}
+            {{ end }}
+          </div>
+          <br>
+          <div align="center">
+            <a href="http://192.168.1.100:8075" style="background-color: #3274D9; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; font-family: sans-serif; font-size: 16px;">
+              📊 OPEN SERVER DASHBOARD
+            </a>
+          </div>

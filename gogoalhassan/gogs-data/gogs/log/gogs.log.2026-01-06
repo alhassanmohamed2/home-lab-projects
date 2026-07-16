@@ -1,0 +1,21 @@
+2026/01/06 13:55:58 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:55:58 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:55:59 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:55:59 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:56:00 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:56:00 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:56:02 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:56:02 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:56:03 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:56:03 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:56:04 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:56:04 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:56:05 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:56:05 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:56:06 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:56:06 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:56:07 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:56:07 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/01/06 13:56:08 [ INFO] Gogs 0.14.0+dev
+2026/01/06 13:56:09 [ INFO] Run mode: Production
+2026/01/06 13:56:09 [ INFO] Available on http://localhost:3000/

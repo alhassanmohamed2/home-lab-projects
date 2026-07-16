@@ -1,0 +1,22 @@
+version: '3'
+services:
+  chrome:
+    image: kasmweb/chrome:1.18.0
+    ports:
+      - "9872:6901"
+    environment:
+      - VNC_PW=password
+      - VNCOPTIONS=-sslOnly=0 -DisableBasicAuth
+      - KASM_SVC_PRINTER=0
+      - KASM_SVC_SMARTCARD=0
+    shm_size: 2gb
+    group_add:
+      - "44"
+      - "992"
+    security_opt:
+      - seccomp:unconfined
+    devices:
+      - /dev/dri:/dev/dri
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4

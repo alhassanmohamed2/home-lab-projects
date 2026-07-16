@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # The Gatekeeper (Nginx)
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8795:80" # <--- CHANGED: Host Port 8795 maps to Container Port 80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend
+      - backend
+
+  # Backend Service (Internal Only)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - PORT=3001
+    expose:
+      - "3001" # Only exposed to Nginx
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # Frontend Service (Internal Only)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - WDS_SOCKET_PORT=0 # Fix for React hot-reload behind proxy
+    expose:
+      - "3000" # Only exposed to Nginx
+    stdin_open: true 
+    tty: true

@@ -1,0 +1,13 @@
+network:
+  protocol: http
+  interface: 0.0.0.0
+  ssl:
+    require_ssl: false
+    pem_certificate: /home/kasm-user/.vnc/self.pem
+    pem_key: /home/kasm-user/.vnc/self.pem
+  udp:
+    public_ip: 127.0.0.1
+security:
+  brute_force_protection:
+    blacklist_threshold: 0
+    blacklist_timeout: 0

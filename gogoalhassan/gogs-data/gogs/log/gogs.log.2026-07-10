@@ -1,0 +1,69 @@
+2026/07/10 02:40:27 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:27 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:28 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:28 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:29 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:29 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:30 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:30 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:32 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:32 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:33 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:33 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:35 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:35 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:36 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:36 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:37 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:37 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:38 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:38 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:39 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:39 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:41 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:41 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:42 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:42 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:43 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:43 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:44 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:44 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.2:3306: connect: connection refused
+2026/07/10 02:40:45 [ INFO] Gogs 0.14.0+dev
+2026/07/10 02:40:45 [ INFO] Run mode: Production
+2026/07/10 02:40:46 [ INFO] Available on http://localhost:3000/
+2026/07/10 11:13:06 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:06 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:07 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:07 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:09 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:09 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:09 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:09 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:10 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:10 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:11 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:11 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:12 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:12 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:13 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:13 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:15 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:15 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 11:13:16 [ INFO] Gogs 0.14.0+dev
+2026/07/10 11:13:17 [ INFO] Run mode: Production
+2026/07/10 11:13:17 [ INFO] Available on http://localhost:3000/
+2026/07/10 23:03:12 [ INFO] Gogs 0.14.0+dev
+2026/07/10 23:03:12 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 23:03:13 [ INFO] Gogs 0.14.0+dev
+2026/07/10 23:03:13 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 23:03:14 [ INFO] Gogs 0.14.0+dev
+2026/07/10 23:03:14 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 23:03:15 [ INFO] Gogs 0.14.0+dev
+2026/07/10 23:03:15 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 23:03:17 [ INFO] Gogs 0.14.0+dev
+2026/07/10 23:03:17 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 23:03:18 [ INFO] Gogs 0.14.0+dev
+2026/07/10 23:03:18 [FATAL] [...o/gogs/internal/route/install.go:76 GlobalInit()] Failed to initialize ORM engine: open database: dial tcp 172.27.0.3:3306: connect: connection refused
+2026/07/10 23:03:19 [ INFO] Gogs 0.14.0+dev
+2026/07/10 23:03:20 [ INFO] Run mode: Production
+2026/07/10 23:03:20 [ INFO] Available on http://localhost:3000/

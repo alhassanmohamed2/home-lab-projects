@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  fullstack-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fullstack_app_v1
+    restart: unless-stopped
+    
+    # Port Mapping: Host Port : Container Port
+    ports:
+      - "8059:8059"
+
+    # Volume Mapping: Persist data on your host machine
+    volumes:
+      # Maps a 'data' folder in your current directory to /data inside the container
+      - ./data:/data
+
+    
+    # Environment variables (if your main.py reads them)
+    environment:
+      - ENV=production

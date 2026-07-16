@@ -1,0 +1,10 @@
+.welcome {
+    background-image: url('../images/background.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.welcome-page-settings {
+    background: rgba(0, 0, 0, 0.7) !important;
+}

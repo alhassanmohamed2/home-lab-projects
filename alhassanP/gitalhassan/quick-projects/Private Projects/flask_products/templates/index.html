@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Products</title>
+</head>
+
+<body>
+    {%for product in data_array%}
+    <div class="d-flex justify-content-center container mt-5">
+        <div class="card p-3 bg-white"><i class="fa fa-apple"></i>
+            <div class="about-product text-center mt-2">
+                <div sytle="display:flex;">
+                    {% for image in json.loads(product[4]) %}
+                    <img src="{{image}}" width=70 /> {%endfor%}
+
+                </div>
+                <div>
+                    <h4> {{product[1]}}</h4>
+                    <h6 class="mt-0 text-black-50"> {{product[5]}} </h6>
+                </div>
+            </div>
+            <div class="stats mt-2">
+                <div class="d-flex justify-content-between p-price"><span>Retail Price</span>
+                    <span> {{product[2]}} $</span>
+                </div>
+                <div class="d-flex justify-content-between p-price"><span>Discounted Price</span>
+                    <span> {{product[3]}} $</span>
+                </div>
+
+            </div>
+            <a href={{product[0]}} target="_blank">Link to the Product</a>
+        </div>
+    </div>
+    {%endfor%}
+</body>
+
+</html>

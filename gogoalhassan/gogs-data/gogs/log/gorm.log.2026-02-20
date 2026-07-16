@@ -1,0 +1,22 @@
+2026/02/20 17:32:04 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:05 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:06 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:08 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:09 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:10 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:12 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:13 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:14 gogs.io/gogs/internal/dbutil/dsn.go:115
+[error] failed to initialize database, got error dial tcp 172.27.0.3:3306: connect: connection refused
+2026/02/20 17:32:17 gogs.io/gogs/internal/database/database.go:108 SLOW SQL >= 100ms
+[114.474ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'gogs%' ORDER BY SCHEMA_NAME='gogs' DESC,SCHEMA_NAME limit 1
+2026/02/20 17:32:18 gogs.io/gogs/internal/database/migrations/migrations.go:82 SLOW SQL >= 100ms
+[354.296ms] [rows:1] SELECT * FROM `version` WHERE id = 1 ORDER BY `version`.`id` LIMIT 1

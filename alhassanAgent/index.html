@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Voice Assistant</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --chat-bg: #1e1e1e;
+            --user-msg-bg: #3700b3;
+            --ai-msg-bg: #2c2c2c;
+            --text-color: #ffffff;
+            --accent-color: #bb86fc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            padding: 1rem;
+            background-color: var(--chat-bg);
+            text-align: center;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #333;
+        }
+
+        #chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1rem;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--user-msg-bg);
+            border-bottom-right-radius: 0.2rem;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+            background-color: var(--ai-msg-bg);
+            border-bottom-left-radius: 0.2rem;
+            white-space: pre-wrap;
+        }
+
+        #input-area {
+            padding: 1rem;
+            background-color: var(--chat-bg);
+            display: flex;
+            gap: 0.5rem;
+            border-top: 1px solid #333;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            border: 1px solid #444;
+            background-color: #2c2c2c;
+            color: white;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        #send-btn {
+            background-color: var(--accent-color);
+            color: black;
+        }
+
+        #mic-btn {
+            background-color: #cf6679;
+            color: black;
+        }
+        
+        #mic-btn.listening {
+            background-color: #ff0000;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .code-output {
+            font-family: monospace;
+            background: #000;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 0.3rem;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Voice-to-Command Linux Assistant
+</header>
+
+<div id="chat-container">
+    <div class="message ai-message">
+        Hello! I am your Linux server assistant. capable of running commands like `free`, `df`, `uptime` and more. How can I help?
+    </div>
+</div>
+
+<div id="input-area">
+    <button id="mic-btn">🎙️</button>
+    <input type="text" id="user-input" placeholder="Type or speak a command..." autocomplete="off">
+    <button id="send-btn">Send</button>
+</div>
+
+<script>
+    const chatContainer = document.getElementById('chat-container');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const micBtn = document.getElementById('mic-btn');
+
+    // --- Voice Recognition ---
+    let recognition;
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.lang = 'en-US';
+
+        recognition.onstart = () => {
+            micBtn.classList.add('listening');
+        };
+
+        recognition.onend = () => {
+            micBtn.classList.remove('listening');
+        };
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            userInput.value = transcript;
+            startChat(transcript);
+        };
+
+        micBtn.addEventListener('click', () => {
+            if (micBtn.classList.contains('listening')) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        });
+    } else {
+        micBtn.style.display = 'none';
+        appendMessage("System", "Voice recognition not supported in this browser.", 'ai-message');
+    }
+
+    // --- Chat Logic ---
+    sendBtn.addEventListener('click', () => {
+        const text = userInput.value.trim();
+        if (text) {
+            startChat(text);
+        }
+    });
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const text = userInput.value.trim();
+            if (text) {
+                startChat(text);
+            }
+        }
+    });
+
+    async function startChat(message) {
+        appendMessage('User', message, 'user-message');
+        userInput.value = '';
+
+        try {
+            // Show loading state?
+            const loadingId = appendMessage('AI', 'Thinking...', 'ai-message');
+            
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            
+            // Remove loading message
+            const loadingEl = document.getElementById(loadingId);
+            if(loadingEl) loadingEl.remove();
+
+            let displayHtml = data.response;
+            
+            // If raw output exists (and wasn't fully summarized into text), we can show it nicely
+            // But the backend summary usually covers it. 
+            // Let's rely on the summary primarily, but if there's raw output we could potentially append it in a details block if desired.
+            // For now, simple text is fine as per requirements.
+            
+            appendMessage('AI', displayHtml, 'ai-message');
+
+        } catch (err) {
+            appendMessage('System', `Error: ${err.message}`, 'ai-message');
+        }
+    }
+
+    function appendMessage(sender, text, className) {
+        const div = document.createElement('div');
+        div.className = `message ${className}`;
+        div.id = 'msg-' + Date.now();
+        div.innerText = text; // Secure from XSS for basic text
+        chatContainer.appendChild(div);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return div.id;
+    }
+</script>
+
+</body>
+</html>
